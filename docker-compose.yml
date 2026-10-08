@@ -1,0 +1,13 @@
+# 실행: docker compose up -d --build   (이 폴더에서)
+# AIS: 호스트에서 수집기를 돌리면 data/ais/ 에 쌓이고 컨테이너가 같은 폴더를 읽는다 (재시작 없이 반영)
+#   AISSTREAM_API_KEY=키 python collectors/ais_collector.py
+services:
+  berth-early-warning:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: ["8099:8099"]
+    environment:
+      AIS_DIR: /app/data/ais
+    volumes:
+      - ./data/ais:/app/data/ais:ro

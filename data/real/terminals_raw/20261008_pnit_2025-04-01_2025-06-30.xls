@@ -1,0 +1,5869 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="../common/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../common/js/jquery-ui.min.js"></script>
+
+
+<script language="JavaScript" type="text/javascript" nonce="ugotaolxjt">
+	$(document).ready(function() {
+		$('form').each(function() {
+			$(this).append($('<input/>', {type: 'hidden', name: 'CSRF_TOKEN', value:'55cfb7e5-f082-483a-afee-02080010ffe1' }));
+		})
+	})
+</script>
+ 
+
+
+
+
+
+
+
+<script language="JavaScript" type="Text/JavaScript" nonce="ugotaolxjt">
+	var CONTEXT_PATH = "/infoservice";
+	chatbotSystemMsgs = JSON.parse(`{"0":[{"id":"0","subId":"1","rule":"SYSTEM","type":"TEXT","msg":"<ul class='enableClickQuestion'>안녕하세요!<br>저는 여러분을 돕기 위해 여기 있습니다.<br>아래의 리스트 중에서 도움이 필요한 내용의 '숫자'만 입력해 주세요.<li value='0'>0. 처음으로</li><li value='1'>1. FREE DAY</li><li value='2'>2. 요율 안내</li><li value='3'>3. 환불 신청 방법</li><li value='4'>4. 자동수납 정산 이용 방법 (경과보관료/전기료 등)</li><li value='5'>5. 선반입 관련 안내</li><li value='6'>6. LGI 관련 안내<li value='7'>7. 입금 후 홀드가 풀리지 않아요.</li><li value='8'>8. 기타 문의 사항</li></ul>"}],"1":[{"id":"1","subId":"1","rule":"SYSTEM","type":"TEXT","msg":"선사별 FREE DAY 안내는 아래 내용을 참조 바랍니다.<br><br>처음으로 돌아가시려면 0을 눌러주세요."},{"id":"1","subId":"2","rule":"SYSTEM","type":"IMAGE","msg":"<a target='_blank' href='../common/image/pnitpopup4.png'><img src='../common/image/pnitpopup4.png' style='width:100%;'></a>"}],"2":[{"id":"2","subId":"1","rule":"SYSTEM","type":"TEXT","msg":"화주 현수 요율 안내는 아래 내용을 참고 바랍니다.<br><br>처음으로 돌아가시려면 0을 눌러주세요."},{"id":"2","subId":"2","rule":"SYSTEM","type":"IMAGE","msg":"<a target='_blank' href='../common/image/pnit_cash_trf_2026.png'><img src='../common/image/pnit_cash_trf_2026.png' style='width:100%;'></a>"}],"3":[{"id":"3","subId":"1","rule":"SYSTEM","type":"LINK","msg":"환불은 당월 접수분에 한해 ‘익월 10일’에 일괄 처리 됩니다.<br><br>환불요청서 작성 URL : <a href='https://www.pnitl.com/infoservice/invoice/invoiceAfterAmountTable.jsp'>https://www.pnitl.com/infoservice/invoice/invoiceAfterAmountTable.jsp</a> <br><br>처음으로 돌아가시려면 0을 눌러주세요."}],"4":[{"id":"4","subId":"1","rule":"SYSTEM","type":"TEXT","msg":"경과보관료/전기료 등 비용 자동수납 이용 방법<br>자동수납 매뉴얼 보기 <a target='_blank' href='/infoservice/invoice/files/pnit_auto_payment_manual.pdf'>(클릭)</a><br>처음으로 돌아가려면 0을 눌러주세요"}],"5":[{"id":"5","subId":"1","rule":"SYSTEM","type":"LINK","msg":"선반입 비용 정산 (로그인 필요)<br> <a href='/infoservice/invoice/invoiceEarlyGateinTable.jsp'>https://www.pnitl.com/infoservice/invoice/invoiceEarlyGateinTable.jsp</a> <br><br><a target='_blank' href='https://www.pnitl.com/infoservice/invoice/files/PNIT%20Early%20Gate%20In%20Manual%20(1).pdf'>선반입 정산 메뉴얼보기 (클릭)</a><br><br><a target='_blank' href='https://www.pnitl.com/infoservice/invoice/files/PNIT%20Early%20Gate%20In%20Manual%20(2).pdf'>선반입 정보변경 안내 메뉴얼보기 (클릭)</a><br><br> 처음으로 돌아가시려면 0을 눌러주세요."}],"6":[{"id":"6","subId":"1","rule":"SYSTEM","type":"LINK","msg":"LGI 비용 정산 (로그인 필요)<br> <a href='/infoservice/invoice/invoiceLateGateInTable.jsp'>https://www.pnitl.com/infoservice/invoice/invoiceLateGateInTable.jsp</a> <br><br><a target='_blank' href='https://www.pnitl.com/infoservice/invoice/files/pnit_late_gate_in_manual.pdf'>LGI 정산 메뉴얼보기 (클릭)</a><br><br> 처음으로 돌아가시려면 0을 눌러주세요."}],"7":[{"id":"7","subId":"1","rule":"SYSTEM","type":"TEXT","msg":"이메일 접수 : <br> pnit-cash@globalpsa.com <br><br>첨부 자료 : 이체증, 컨테이너 번호<br><br>처음으로 돌아가시려면 0을 눌러주세요."}],"8":[{"id":"8","subId":"1","rule":"SYSTEM","type":"TEXT","msg":"문의 내용을 아래 메일 주소로 보내 주시면 최대한 빠르게 회신 드리겠습니다.<br> pnit-cash@globalpsa.com <br><br><br>처음으로 돌아가시려면 0을 눌러주세요."}]}`);
+</script>
+
+
+
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+	<title>부산신항국제터미널 정보서비스</title>
+</head>
+<body>
+
+<div class="tblType_08">
+	<table>
+	<tbody>
+	<tr>
+		<th style="background:#626164; color:#fff;">선석</th>
+		<th style="background:#626164; color:#fff;">선사</th>
+		<th style="background:#626164; color:#fff;">모선항차</th>
+		<th style="background:#626164; color:#fff;">선사항차</th>
+		
+		<th style="background:#626164; color:#fff;">Head (Bridge) Stern</th>
+		
+		<th style="background:#626164; color:#fff;">선명</th>
+		<th style="background:#626164; color:#fff;">ROUTE</th>
+		
+		<th style="background:#626164; color:#fff;">반입마감시한</th>
+		<th style="background:#626164; color:#fff;">접안(예정)일시</th>
+		<th style="background:#626164; color:#fff;">출항(예정)일시</th>
+		
+		<th style="background:#626164; color:#fff;">양하</th>
+		<th style="background:#626164; color:#fff;">적하</th>
+		<th style="background:#626164; color:#fff;">Shift</th>
+		<th style="background:#626164; color:#fff;">AMP</th>
+		<th style="background:#626164; color:#fff;">상태</th>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVDX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2452W/2512E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			42 (34) 21
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MONTEVIDEO EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-03-30 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-03-30 19:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-02 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1471</td>
+		<td align="center" style="background:#f9f9f9;">3210</td>
+		<td align="center" style="background:#f9f9f9;">320</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNOL001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA505R/FA505R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NOA ARIELA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-03-31 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-03-31 15:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-03 09:10</td>
+		
+		<td align="center" style="background:#f9f9f9;">3958</td>
+		<td align="center" style="background:#f9f9f9;">2486</td>
+		<td align="center" style="background:#f9f9f9;">142</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MAEE002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV511R/HV511R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AMEERA III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-03-31 07:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-03-31 17:12</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-02 01:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">1186</td>
+		<td align="center" style="background:#f9f9f9;">1092</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MBRA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO509S/KQ514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (28) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC BRANKA</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-01 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-02 01:58</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-03 03:18</td>
+		
+		<td align="center" style="background:#f9f9f9;">1845</td>
+		<td align="center" style="background:#f9f9f9;">601</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">HAS</td>
+		<td align="center" style="background:#f9f9f9;">
+			GCMT003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2504W/2505E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (09) 10
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">GRACE MERCHANT</td>
+		<td align="center" style="background:#f9f9f9;">MSX</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-01 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-02 03:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-02 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">67</td>
+		<td align="center" style="background:#f9f9f9;">102</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MAGV001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO512N/GO512N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (15) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AGAMEMNON VIII</td>
+		<td align="center" style="background:#f9f9f9;">ORINTE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-02 07:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-02 17:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-03 11:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">5</td>
+		<td align="center" style="background:#f9f9f9;">218</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVAN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK511A/UK511A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VANDYA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-02 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-03 11:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-05 00:20</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">3072</td>
+		<td align="center" style="background:#f9f9f9;">4</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MHAH001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FD514W/FD514W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			17 (28) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC HAMBURG</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-03 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-03 13:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-04 16:58</td>
+		
+		<td align="center" style="background:#f9f9f9;">130</td>
+		<td align="center" style="background:#f9f9f9;">1971</td>
+		<td align="center" style="background:#f9f9f9;">40</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MTHN001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HU510R/HW514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ATHENA</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-03 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-03 14:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-04 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">617</td>
+		<td align="center" style="background:#f9f9f9;">887</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MTDW003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			KQ508R/XA514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (12) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DARWIN VI</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-04 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-04 19:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-06 06:27</td>
+		
+		<td align="center" style="background:#f9f9f9;">2918</td>
+		<td align="center" style="background:#f9f9f9;">617</td>
+		<td align="center" style="background:#f9f9f9;">162</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MMAR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FK513A/FK513A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MARGRIT</td>
+		<td align="center" style="background:#f9f9f9;">FALCON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-04 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-04 19:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-05 17:58</td>
+		
+		<td align="center" style="background:#f9f9f9;">78</td>
+		<td align="center" style="background:#f9f9f9;">1129</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MJUT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA511A/FA511A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC JULIETTE</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-04 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-05 02:45</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-07 06:17</td>
+		
+		<td align="center" style="background:#f9f9f9;">1724</td>
+		<td align="center" style="background:#f9f9f9;">2577</td>
+		<td align="center" style="background:#f9f9f9;">24</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OSCN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2512E/2512E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (36) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEASPAN BEACON</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-05 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-05 20:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-07 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2098</td>
+		<td align="center" style="background:#f9f9f9;">2493</td>
+		<td align="center" style="background:#f9f9f9;">192</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSAO003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW511R/XA514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (13) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ANIELLO</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-05 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-06 07:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-06 22:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">740</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MHAV001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI514A/QI514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (08) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LE HAVRE</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-06 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-07 06:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-07 21:24</td>
+		
+		<td align="center" style="background:#f9f9f9;">300</td>
+		<td align="center" style="background:#f9f9f9;">413</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVCT002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA512A/FA512A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VICTORIA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-06 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-07 08:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-09 16:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">2061</td>
+		<td align="center" style="background:#f9f9f9;">3362</td>
+		<td align="center" style="background:#f9f9f9;">18</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCRS001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK512A/UK512A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CRISTINA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-07 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-07 20:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-09 12:02</td>
+		
+		<td align="center" style="background:#f9f9f9;">1633</td>
+		<td align="center" style="background:#f9f9f9;">1623</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MADI002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV512R/HV512R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (12) 16
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ALDI III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-07 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-07 23:26</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-09 12:47</td>
+		
+		<td align="center" style="background:#f9f9f9;">1111</td>
+		<td align="center" style="background:#f9f9f9;">819</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCAH001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			XA514W/XA514W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CATHERINE VI</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-09 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-09 15:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-10 12:58</td>
+		
+		<td align="center" style="background:#f9f9f9;">582</td>
+		<td align="center" style="background:#f9f9f9;">24</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OHPH001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2513E/2513E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SPHERE</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-09 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-09 15:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-11 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1246</td>
+		<td align="center" style="background:#f9f9f9;">2256</td>
+		<td align="center" style="background:#f9f9f9;">132</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MGOA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA506R/FA506R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GENOVA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-09 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-09 18:42</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-11 13:07</td>
+		
+		<td align="center" style="background:#f9f9f9;">3065</td>
+		<td align="center" style="background:#f9f9f9;">956</td>
+		<td align="center" style="background:#f9f9f9;">606</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT009
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX515R/HX515R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-10 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-10 23:47</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-11 16:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">155</td>
+		<td align="center" style="background:#f9f9f9;">347</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MYKT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX512A/UX512A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (55) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC YUKTA X</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-11 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-11 15:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-13 04:46</td>
+		
+		<td align="center" style="background:#f9f9f9;">1272</td>
+		<td align="center" style="background:#f9f9f9;">1718</td>
+		<td align="center" style="background:#f9f9f9;">660</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSYY002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			KQ511R/KQ515A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (15) 22
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SHAY</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-11 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-11 20:12</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-13 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2276</td>
+		<td align="center" style="background:#f9f9f9;">1824</td>
+		<td align="center" style="background:#f9f9f9;">24</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MGAY002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FZ513A/FZ513A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			23 (30) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GAYANE</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-11 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-12 00:03</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-14 07:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">1819</td>
+		<td align="center" style="background:#f9f9f9;">3031</td>
+		<td align="center" style="background:#f9f9f9;">22</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MPER001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK513A/UK513A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC PERLE</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-13 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-13 12:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-15 04:45</td>
+		
+		<td align="center" style="background:#f9f9f9;">1467</td>
+		<td align="center" style="background:#f9f9f9;">2616</td>
+		<td align="center" style="background:#f9f9f9;">4</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MGIS001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI515A/QI515A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (08) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GISELLE</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-13 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-13 18:27</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-14 23:36</td>
+		
+		<td align="center" style="background:#f9f9f9;">771</td>
+		<td align="center" style="background:#f9f9f9;">647</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHBB002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0034E/0034E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			22 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM BLESSING</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-13 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-14 09:35</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-15 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1243</td>
+		<td align="center" style="background:#f9f9f9;">2033</td>
+		<td align="center" style="background:#f9f9f9;">24</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">SIT</td>
+		<td align="center" style="background:#f9f9f9;">
+			STYU001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2503N/2504S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 15
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SITC YUNCHENG</td>
+		<td align="center" style="background:#f9f9f9;">KCM</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-15 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-15 00:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-15 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">197</td>
+		<td align="center" style="background:#f9f9f9;">131</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">ZIM</td>
+		<td align="center" style="background:#f9f9f9;">
+			ZZB5002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			10S/10S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			44 (56) 61
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">GANGES</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-14 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-15 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-16 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1579</td>
+		<td align="center" style="background:#f9f9f9;">436</td>
+		<td align="center" style="background:#f9f9f9;">236</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OTLH001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			075W/075W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			28 (36) 38
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">TALLAHASSEE</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-15 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-15 23:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-16 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">406</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLYS003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW512R/HW515A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			44 (57) 61
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LYSE V</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-15 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-16 06:57</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-17 05:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">1492</td>
+		<td align="center" style="background:#f9f9f9;">1391</td>
+		<td align="center" style="background:#f9f9f9;">14</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNOL002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA513A/FA513A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NOA ARIELA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-17 07:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-17 17:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-19 17:31</td>
+		
+		<td align="center" style="background:#f9f9f9;">1468</td>
+		<td align="center" style="background:#f9f9f9;">3459</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MYKO001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX513A/UX513A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC YOKOHAMA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-17 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-18 01:52</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-19 05:57</td>
+		
+		<td align="center" style="background:#f9f9f9;">200</td>
+		<td align="center" style="background:#f9f9f9;">987</td>
+		<td align="center" style="background:#f9f9f9;">360</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			POXX003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2502W/2502W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">POSORJA EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-17 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-18 06:54</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-20 08:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">2580</td>
+		<td align="center" style="background:#f9f9f9;">887</td>
+		<td align="center" style="background:#f9f9f9;">1622</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN007
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX516R/HX516R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			14 (03) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-18 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-19 07:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-19 21:57</td>
+		
+		<td align="center" style="background:#f9f9f9;">126</td>
+		<td align="center" style="background:#f9f9f9;">171</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MZXX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2503W/2515E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MANZANILLO EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-19 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-19 20:06</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-21 19:18</td>
+		
+		<td align="center" style="background:#f9f9f9;">1661</td>
+		<td align="center" style="background:#f9f9f9;">3373</td>
+		<td align="center" style="background:#f9f9f9;">206</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HAS</td>
+		<td align="center" style="background:#f9f9f9;">
+			HRON006
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2504W/2506E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			11 (04) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HONOR OCEAN</td>
+		<td align="center" style="background:#f9f9f9;">SETO3</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-19 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-20 11:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-20 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">56</td>
+		<td align="center" style="background:#f9f9f9;">62</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MORN003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO514N/GO514N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (27) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ORION</td>
+		<td align="center" style="background:#f9f9f9;">ORINTE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-20 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-20 11:16</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-21 17:40</td>
+		
+		<td align="center" style="background:#f9f9f9;">595</td>
+		<td align="center" style="background:#f9f9f9;">2125</td>
+		<td align="center" style="background:#f9f9f9;">32</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSGN001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW513R/HW516A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (13) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GINA</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-20 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-20 20:07</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-22 02:04</td>
+		
+		<td align="center" style="background:#f9f9f9;">402</td>
+		<td align="center" style="background:#f9f9f9;">1173</td>
+		<td align="center" style="background:#f9f9f9;">128</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ODOA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2514E/2514E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (34) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">RDO ACE</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-21 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-21 19:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-23 10:50</td>
+		
+		<td align="center" style="background:#f9f9f9;">1463</td>
+		<td align="center" style="background:#f9f9f9;">1724</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCDD002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA508R/FA508R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CANDIDA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-21 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-21 21:03</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-24 04:30</td>
+		
+		<td align="center" style="background:#f9f9f9;">3621</td>
+		<td align="center" style="background:#f9f9f9;">1186</td>
+		<td align="center" style="background:#f9f9f9;">66</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI012
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG515A/HG515R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-21 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-22 08:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-23 16:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">1075</td>
+		<td align="center" style="background:#f9f9f9;">1101</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OSSB004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2515E/2515E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (36) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEASPAN BELLWETHER</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-23 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-23 12:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-25 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2198</td>
+		<td align="center" style="background:#f9f9f9;">2874</td>
+		<td align="center" style="background:#f9f9f9;">62</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVGA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV514R/HV514R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			17 (06) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VAIGA III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-23 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-23 19:08</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-24 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">778</td>
+		<td align="center" style="background:#f9f9f9;">1004</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFIT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FK516A/FK516A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FAITH</td>
+		<td align="center" style="background:#f9f9f9;">FALCON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-23 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-24 06:08</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-24 23:21</td>
+		
+		<td align="center" style="background:#f9f9f9;">265</td>
+		<td align="center" style="background:#f9f9f9;">680</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCKR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO515N/GO515N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (09) 22
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPE KORTIA</td>
+		<td align="center" style="background:#f9f9f9;">ORINTE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-24 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-25 00:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-25 14:10</td>
+		
+		<td align="center" style="background:#f9f9f9;">958</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSIL001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI516A/QI516A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (49) 60
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SILVIA</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-24 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-25 01:32</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-25 20:32</td>
+		
+		<td align="center" style="background:#f9f9f9;">529</td>
+		<td align="center" style="background:#f9f9f9;">697</td>
+		<td align="center" style="background:#f9f9f9;">22</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MDMA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX515A/HX517R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 15
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DIAMOND II</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-25 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-25 16:06</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-26 06:28</td>
+		
+		<td align="center" style="background:#f9f9f9;">5</td>
+		<td align="center" style="background:#f9f9f9;">354</td>
+		<td align="center" style="background:#f9f9f9;">6</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OORI003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2503W/2503W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			19 (26) 39
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE ORINOCO</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-25 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-25 19:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-27 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2779</td>
+		<td align="center" style="background:#f9f9f9;">584</td>
+		<td align="center" style="background:#f9f9f9;">478</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSMY001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FD516W/FD516W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			38 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MAYA</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-25 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-25 22:22</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-26 19:56</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1513</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNJR002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW514R/HW517A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NEW JERSEY III</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-26 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-26 20:45</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-27 17:56</td>
+		
+		<td align="center" style="background:#f9f9f9;">576</td>
+		<td align="center" style="background:#f9f9f9;">496</td>
+		<td align="center" style="background:#f9f9f9;">30</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MGOA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA514A/FA514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GENOVA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-26 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-26 22:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-29 16:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">2780</td>
+		<td align="center" style="background:#f9f9f9;">3352</td>
+		<td align="center" style="background:#f9f9f9;">650</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			ITXX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2504W/2516E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ITAJAI EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-26 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-27 07:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-29 18:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">1938</td>
+		<td align="center" style="background:#f9f9f9;">2929</td>
+		<td align="center" style="background:#f9f9f9;">224</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MOTT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI517A/QI517A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			22 (15) 03
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CARLOTTA</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-27 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-27 21:22</td>
+		<td align="center" style="background:#f9f9f9;">2025-04-29 09:04</td>
+		
+		<td align="center" style="background:#f9f9f9;">1089</td>
+		<td align="center" style="background:#f9f9f9;">591</td>
+		<td align="center" style="background:#f9f9f9;">6</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MPAL002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX514A/UX514A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC PALAK</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-28 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-29 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-01 02:03</td>
+		
+		<td align="center" style="background:#f9f9f9;">1120</td>
+		<td align="center" style="background:#f9f9f9;">1357</td>
+		<td align="center" style="background:#f9f9f9;">132</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MEVA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK512R/UK512R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC EVA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKW</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-29 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-29 19:08</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-01 06:10</td>
+		
+		<td align="center" style="background:#f9f9f9;">2472</td>
+		<td align="center" style="background:#f9f9f9;">214</td>
+		<td align="center" style="background:#f9f9f9;">62</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			POXX004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2516E/2516E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">POSORJA EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-29 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-04-29 21:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-01 23:24</td>
+		
+		<td align="center" style="background:#f9f9f9;">2226</td>
+		<td align="center" style="background:#f9f9f9;">2241</td>
+		<td align="center" style="background:#f9f9f9;">58</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			VLOX003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2504W/2504W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">VALOR</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-30 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-01 05:12</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-03 04:31</td>
+		
+		<td align="center" style="background:#f9f9f9;">1486</td>
+		<td align="center" style="background:#f9f9f9;">1264</td>
+		<td align="center" style="background:#f9f9f9;">1092</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MPSC001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			XA517A/KQ518A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (56) 61
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">PUSAN C</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-04-30 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-01 08:12</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-03 09:10</td>
+		
+		<td align="center" style="background:#f9f9f9;">3461</td>
+		<td align="center" style="background:#f9f9f9;">761</td>
+		<td align="center" style="background:#f9f9f9;">136</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCKR002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO515N/GO515N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (27) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPE KORTIA</td>
+		<td align="center" style="background:#f9f9f9;">ORINTE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-01 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-02 00:55</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-03 09:56</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">2125</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MTRN001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV515R/HV515R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (12) 16
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC TURIN III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-02 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-03 06:47</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-04 11:20</td>
+		
+		<td align="center" style="background:#f9f9f9;">951</td>
+		<td align="center" style="background:#f9f9f9;">1074</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVLT003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA515A/FA515A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VALENTINA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-02 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-03 11:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-06 02:21</td>
+		
+		<td align="center" style="background:#f9f9f9;">2427</td>
+		<td align="center" style="background:#f9f9f9;">3003</td>
+		<td align="center" style="background:#f9f9f9;">60</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MBDA001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK515A/UK515A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC BENEDETTA XIII</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-02 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-03 12:22</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-05 16:05</td>
+		
+		<td align="center" style="background:#f9f9f9;">2410</td>
+		<td align="center" style="background:#f9f9f9;">2736</td>
+		<td align="center" style="background:#f9f9f9;">72</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI013
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG517A/HG517R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-04 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-04 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-05 16:42</td>
+		
+		<td align="center" style="background:#f9f9f9;">641</td>
+		<td align="center" style="background:#f9f9f9;">640</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			RIXX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2505W/2517E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">RIO DE JANEIRO EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-05 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-05 18:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-08 00:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">1735</td>
+		<td align="center" style="background:#f9f9f9;">3123</td>
+		<td align="center" style="background:#f9f9f9;">366</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT010
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX518R/XA518A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-05 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-05 18:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-06 10:05</td>
+		
+		<td align="center" style="background:#f9f9f9;">123</td>
+		<td align="center" style="background:#f9f9f9;">219</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSYE002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			KQ514R/XA518A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			44 (55) 61
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SYDNEY VI</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-05 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-06 04:45</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-07 10:15</td>
+		
+		<td align="center" style="background:#f9f9f9;">2488</td>
+		<td align="center" style="background:#f9f9f9;">202</td>
+		<td align="center" style="background:#f9f9f9;">70</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSPZ001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX516A/UX516A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SOFIA PAZ</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-06 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-06 14:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-08 09:05</td>
+		
+		<td align="center" style="background:#f9f9f9;">1255</td>
+		<td align="center" style="background:#f9f9f9;">1933</td>
+		<td align="center" style="background:#f9f9f9;">52</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVVI003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA510R/FA510R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VIVIENNE</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-07 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-07 12:03</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-10 10:03</td>
+		
+		<td align="center" style="background:#f9f9f9;">3365</td>
+		<td align="center" style="background:#f9f9f9;">2154</td>
+		<td align="center" style="background:#f9f9f9;">754</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCOO004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV516R/HV516R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			40 (28) 26
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC COLETTE III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-07 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-08 02:10</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-09 09:30</td>
+		
+		<td align="center" style="background:#f9f9f9;">1192</td>
+		<td align="center" style="background:#f9f9f9;">1207</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLGX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI518A/QI518A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (08) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LAGOS X</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-08 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-08 11:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-10 03:35</td>
+		
+		<td align="center" style="background:#f9f9f9;">1660</td>
+		<td align="center" style="background:#f9f9f9;">643</td>
+		<td align="center" style="background:#f9f9f9;">92</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			VTGX003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2505W/2505W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			22 (35) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">VANTAGE</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-09 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-09 11:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-10 22:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">871</td>
+		<td align="center" style="background:#f9f9f9;">787</td>
+		<td align="center" style="background:#f9f9f9;">820</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT011
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			XA518A/HX519A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-09 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-10 04:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-10 18:47</td>
+		
+		<td align="center" style="background:#f9f9f9;">172</td>
+		<td align="center" style="background:#f9f9f9;">299</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MRGO001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK516A/UK516A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VIRGO</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-09 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-10 12:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-13 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2240</td>
+		<td align="center" style="background:#f9f9f9;">3613</td>
+		<td align="center" style="background:#f9f9f9;">16</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MIVO001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX517A/UX517A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (07) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC IVORY COAST</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-10 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-10 21:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-12 08:58</td>
+		
+		<td align="center" style="background:#f9f9f9;">840</td>
+		<td align="center" style="background:#f9f9f9;">1369</td>
+		<td align="center" style="background:#f9f9f9;">48</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OORI004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2517E/2517E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			19 (26) 39
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE ORINOCO</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-10 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-11 02:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-13 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1392</td>
+		<td align="center" style="background:#f9f9f9;">2712</td>
+		<td align="center" style="background:#f9f9f9;">36</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN008
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX519R/HT519A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			16 (06) 04
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-12 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-12 10:45</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-13 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">89</td>
+		<td align="center" style="background:#f9f9f9;">432</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MREV003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW515R/HW519A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (13) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC REN V</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-12 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-13 04:10</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-14 04:38</td>
+		
+		<td align="center" style="background:#f9f9f9;">651</td>
+		<td align="center" style="background:#f9f9f9;">1380</td>
+		<td align="center" style="background:#f9f9f9;">64</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MERI002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FK519A/FD519W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			39 (49) 64
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ERICA</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-12 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-13 07:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-15 07:04</td>
+		
+		<td align="center" style="background:#f9f9f9;">755</td>
+		<td align="center" style="background:#f9f9f9;">2899</td>
+		<td align="center" style="background:#f9f9f9;">8</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			CQNX001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			001E/001E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAUQUENES</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-12 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-13 07:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-13 19:18</td>
+		
+		<td align="center" style="background:#f9f9f9;">710</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			BUVX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2506W/2518E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			19 (27) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">BUENAVENTURA EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-13 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-13 21:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-16 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1511</td>
+		<td align="center" style="background:#f9f9f9;">3263</td>
+		<td align="center" style="background:#f9f9f9;">54</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVLR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI519A/QI519A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (15) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">VALOR</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-13 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-14 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-15 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">683</td>
+		<td align="center" style="background:#f9f9f9;">1244</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCDD003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA516A/FA516A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			42 (49) 64
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CANDIDA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-14 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-15 09:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-18 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2037</td>
+		<td align="center" style="background:#f9f9f9;">3501</td>
+		<td align="center" style="background:#f9f9f9;">162</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLII006
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV517R/HV517R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			17 (06) 03
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LILOU III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-15 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-15 14:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-16 22:30</td>
+		
+		<td align="center" style="background:#f9f9f9;">1121</td>
+		<td align="center" style="background:#f9f9f9;">1258</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOIT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2517E/2517E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (28) 41
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SPIRIT</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-15 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-16 07:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-18 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1216</td>
+		<td align="center" style="background:#f9f9f9;">2354</td>
+		<td align="center" style="background:#f9f9f9;">244</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			CQNX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			001E/001E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (10) 21
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAUQUENES</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-16 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-17 03:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-18 23:30</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">3636</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MAUO003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK517A/UK517A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			40 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AURORA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-17 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-18 05:06</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-19 20:21</td>
+		
+		<td align="center" style="background:#f9f9f9;">956</td>
+		<td align="center" style="background:#f9f9f9;">2267</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN009
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT519R/HT520A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			15 (05) 03
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-18 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-19 01:10</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-19 20:34</td>
+		
+		<td align="center" style="background:#f9f9f9;">245</td>
+		<td align="center" style="background:#f9f9f9;">191</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			OSXX001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2518E/2518E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (35) 41
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">OSAKA EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-19 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-19 01:42</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-20 08:18</td>
+		
+		<td align="center" style="background:#f9f9f9;">1017</td>
+		<td align="center" style="background:#f9f9f9;">1383</td>
+		<td align="center" style="background:#f9f9f9;">378</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT012
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX520R/HX521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-19 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-19 22:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-20 11:17</td>
+		
+		<td align="center" style="background:#f9f9f9;">174</td>
+		<td align="center" style="background:#f9f9f9;">454</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVAN003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK514R/FD520W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			40 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VANDYA</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-19 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-19 22:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-21 17:26</td>
+		
+		<td align="center" style="background:#f9f9f9;">2861</td>
+		<td align="center" style="background:#f9f9f9;">1747</td>
+		<td align="center" style="background:#f9f9f9;">24</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLGV001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GN518E/GN518E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (32) 38
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LONG BEACH VI</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-20 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-20 10:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-21 11:46</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1434</td>
+		<td align="center" style="background:#f9f9f9;">4</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MABM005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW516R/HW520A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (12) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ALABAMA III</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-20 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-20 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-21 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">918</td>
+		<td align="center" style="background:#f9f9f9;">984</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			LIXX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2507W/2519E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			18 (26) 39
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">LIMA EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-21 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-21 14:48</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-23 10:24</td>
+		
+		<td align="center" style="background:#f9f9f9;">1601</td>
+		<td align="center" style="background:#f9f9f9;">1725</td>
+		<td align="center" style="background:#f9f9f9;">830</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MDKX001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX518A/UX518A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			62 (55) 43
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DAKAR X</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-21 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-21 20:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-23 12:50</td>
+		
+		<td align="center" style="background:#f9f9f9;">838</td>
+		<td align="center" style="background:#f9f9f9;">1519</td>
+		<td align="center" style="background:#f9f9f9;">104</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MAEE003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV518R/HV518R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (12) 16
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AMEERA III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-21 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-21 21:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-23 10:58</td>
+		
+		<td align="center" style="background:#f9f9f9;">1403</td>
+		<td align="center" style="background:#f9f9f9;">1152</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNAB001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX519A/UX519A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (26) 37
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NAMIBIA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-23 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-23 12:10</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-24 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">152</td>
+		<td align="center" style="background:#f9f9f9;">1238</td>
+		<td align="center" style="background:#f9f9f9;">278</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN010
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT520R/HT521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			14 (04) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-23 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-23 12:55</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-24 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">352</td>
+		<td align="center" style="background:#f9f9f9;">197</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSOV001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GS517N/GS517N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			39 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC OLIVER</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-23 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-23 15:10</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-24 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1308</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSRG002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW517R/HW521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC REGINA</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-23 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-24 03:10</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-25 00:22</td>
+		
+		<td align="center" style="background:#f9f9f9;">1172</td>
+		<td align="center" style="background:#f9f9f9;">508</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNJ1001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI512R/KQ521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (35) 41
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC JUBILEE IX</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-24 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-24 13:56</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-25 18:13</td>
+		
+		<td align="center" style="background:#f9f9f9;">2194</td>
+		<td align="center" style="background:#f9f9f9;">515</td>
+		<td align="center" style="background:#f9f9f9;">88</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVVI004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA518A/FA518A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			40 (47) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VIVIENNE</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-24 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-24 14:11</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-27 04:04</td>
+		
+		<td align="center" style="background:#f9f9f9;">2219</td>
+		<td align="center" style="background:#f9f9f9;">4164</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSMR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI521A/QI521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (09) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MARSEILLE</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-24 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-25 01:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-25 22:15</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">934</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			HUEX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2508W/2520E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (28) 41
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HUMBOLDT EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-25 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-25 20:18</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-27 20:42</td>
+		
+		<td align="center" style="background:#f9f9f9;">1385</td>
+		<td align="center" style="background:#f9f9f9;">2056</td>
+		<td align="center" style="background:#f9f9f9;">958</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI016
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG521A/HG521R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (12) 16
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-25 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-25 23:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-27 09:52</td>
+		
+		<td align="center" style="background:#f9f9f9;">582</td>
+		<td align="center" style="background:#f9f9f9;">963</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MJOF001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FD521W/FD521W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			40 (47) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC JOSEFINA</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-26 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-27 06:23</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-28 13:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">2691</td>
+		<td align="center" style="background:#f9f9f9;">6</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN011
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT521R/HT522A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			15 (05) 03
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-27 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-27 11:33</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-27 23:16</td>
+		
+		<td align="center" style="background:#f9f9f9;">360</td>
+		<td align="center" style="background:#f9f9f9;">77</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MMPT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GN519E/GN519E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			22 (29) 39
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MAPUTO</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-27 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-27 22:42</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-28 22:20</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1182</td>
+		<td align="center" style="background:#f9f9f9;">202</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MADI003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV519R/HV519R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ALDI III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-27 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-28 01:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-29 06:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">958</td>
+		<td align="center" style="background:#f9f9f9;">1065</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSDA001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK519A/UK519A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DANIELA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-28 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-28 15:01</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-29 21:08</td>
+		
+		<td align="center" style="background:#f9f9f9;">1032</td>
+		<td align="center" style="background:#f9f9f9;">1791</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OSBF001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2519E/2519E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (36) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEASPAN BENEFACTOR</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-28 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-29 01:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-30 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1728</td>
+		<td align="center" style="background:#f9f9f9;">2276</td>
+		<td align="center" style="background:#f9f9f9;">20</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MURS001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX520A/UX520A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC URSULA VI</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-29 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-29 20:42</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-30 12:01</td>
+		
+		<td align="center" style="background:#f9f9f9;">1221</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">4</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MORN004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO517S/FD522W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ORION</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-29 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-29 23:09</td>
+		<td align="center" style="background:#f9f9f9;">2025-05-31 19:10</td>
+		
+		<td align="center" style="background:#f9f9f9;">2453</td>
+		<td align="center" style="background:#f9f9f9;">914</td>
+		<td align="center" style="background:#f9f9f9;">54</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHNT003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0038W/0038W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			22 (30) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI NEPTUNE</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-30 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-30 15:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-01 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1950</td>
+		<td align="center" style="background:#f9f9f9;">864</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			VTGX004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2519E/2519E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">VANTAGE</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-30 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-30 23:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-01 16:54</td>
+		
+		<td align="center" style="background:#f9f9f9;">1312</td>
+		<td align="center" style="background:#f9f9f9;">1497</td>
+		<td align="center" style="background:#f9f9f9;">498</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			BUAX002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2509W/2521E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">BUENOS AIRES EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-05-31 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-05-31 22:12</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-03 12:54</td>
+		
+		<td align="center" style="background:#f9f9f9;">2446</td>
+		<td align="center" style="background:#f9f9f9;">3176</td>
+		<td align="center" style="background:#f9f9f9;">4</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOCB003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2508W/2508W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE COLUMBA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-01 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-01 14:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-03 07:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2334</td>
+		<td align="center" style="background:#f9f9f9;">906</td>
+		<td align="center" style="background:#f9f9f9;">438</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MURS002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX520A/UX520A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 19
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC URSULA VI</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-01 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-01 18:54</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-03 11:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1677</td>
+		<td align="center" style="background:#f9f9f9;">42</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLHV001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK520A/UK520A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (35) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">LE HAVRE</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-02 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-03 09:04</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-04 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">480</td>
+		<td align="center" style="background:#f9f9f9;">718</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN012
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT522R/HT523A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			13 (03) 01
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-03 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-03 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-04 03:26</td>
+		
+		<td align="center" style="background:#f9f9f9;">401</td>
+		<td align="center" style="background:#f9f9f9;">263</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MBAI004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA520A/FA520A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC BARI</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-03 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-03 14:48</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-06 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2666</td>
+		<td align="center" style="background:#f9f9f9;">3962</td>
+		<td align="center" style="background:#f9f9f9;">172</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MPER002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FK522A/FK522A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC PERLE</td>
+		<td align="center" style="background:#f9f9f9;">FALCON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-03 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-04 05:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-05 13:07</td>
+		
+		<td align="center" style="background:#f9f9f9;">2326</td>
+		<td align="center" style="background:#f9f9f9;">448</td>
+		<td align="center" style="background:#f9f9f9;">8</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI017
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG522A/HG522R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (12) 16
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-03 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-04 05:54</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-06 01:57</td>
+		
+		<td align="center" style="background:#f9f9f9;">1150</td>
+		<td align="center" style="background:#f9f9f9;">882</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSFC001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK521A/UK521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (36) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FRANCESCA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-05 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-05 15:13</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-06 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">124</td>
+		<td align="center" style="background:#f9f9f9;">1704</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MBRA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI522A/QI522A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (09) 21
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC BRANKA</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-05 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-06 04:15</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-07 14:03</td>
+		
+		<td align="center" style="background:#f9f9f9;">2125</td>
+		<td align="center" style="background:#f9f9f9;">1722</td>
+		<td align="center" style="background:#f9f9f9;">52</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MADY001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FV519N/FV519N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ADYA</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-05 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-06 08:08</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-07 13:43</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1626</td>
+		<td align="center" style="background:#f9f9f9;">26</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			CQNX003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2521E/2521E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			23 (31) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAUQUENES</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-06 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-06 17:42</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-08 17:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">1665</td>
+		<td align="center" style="background:#f9f9f9;">1934</td>
+		<td align="center" style="background:#f9f9f9;">194</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLYS004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW519R/HW522A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (14) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LYSE V</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-07 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-07 16:02</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-09 01:50</td>
+		
+		<td align="center" style="background:#f9f9f9;">1732</td>
+		<td align="center" style="background:#f9f9f9;">1495</td>
+		<td align="center" style="background:#f9f9f9;">34</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MDEI002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FD513E/FD523W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (50) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DEILA</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-07 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-07 16:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-08 14:02</td>
+		
+		<td align="center" style="background:#f9f9f9;">31</td>
+		<td align="center" style="background:#f9f9f9;">1255</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSRK001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV520R/HV520R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			46 (56) 60
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SPARKLE III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-08 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-08 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-09 20:15</td>
+		
+		<td align="center" style="background:#f9f9f9;">1139</td>
+		<td align="center" style="background:#f9f9f9;">939</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MILY001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX521A/UX521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (34) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LILY</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-08 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-08 19:27</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-09 16:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">701</td>
+		<td align="center" style="background:#f9f9f9;">867</td>
+		<td align="center" style="background:#f9f9f9;">236</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT013
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX522R/HX523A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-08 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-09 04:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-09 20:15</td>
+		
+		<td align="center" style="background:#f9f9f9;">228</td>
+		<td align="center" style="background:#f9f9f9;">443</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MMAX001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FK523A/FK523A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			42 (33) 20
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MARGRIT XIII</td>
+		<td align="center" style="background:#f9f9f9;">FALCON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-09 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-09 19:44</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-11 10:20</td>
+		
+		<td align="center" style="background:#f9f9f9;">395</td>
+		<td align="center" style="background:#f9f9f9;">445</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN013
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT523R/HT524A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			14 (04) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-09 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-09 21:55</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-10 16:47</td>
+		
+		<td align="center" style="background:#f9f9f9;">360</td>
+		<td align="center" style="background:#f9f9f9;">535</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MELN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GN521E/GN521E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (56) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ELAINE</td>
+		<td align="center" style="background:#f9f9f9;">SPT</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-09 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-10 00:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-10 18:59</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1008</td>
+		<td align="center" style="background:#f9f9f9;">90</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLLA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA521A/FA521A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LELLA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-10 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-10 21:09</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-13 03:57</td>
+		
+		<td align="center" style="background:#f9f9f9;">2512</td>
+		<td align="center" style="background:#f9f9f9;">3547</td>
+		<td align="center" style="background:#f9f9f9;">30</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI018
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG523A/HG523R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-10 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-11 09:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-12 11:50</td>
+		
+		<td align="center" style="background:#f9f9f9;">576</td>
+		<td align="center" style="background:#f9f9f9;">546</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHNT004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0039E/0039E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			19 (27) 39
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI NEPTUNE</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-11 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-11 14:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-13 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1463</td>
+		<td align="center" style="background:#f9f9f9;">2320</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSGN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW520R/HW524A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			01 (13) 18
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GINA</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-12 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-12 13:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-13 12:54</td>
+		
+		<td align="center" style="background:#f9f9f9;">1050</td>
+		<td align="center" style="background:#f9f9f9;">313</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MRIV001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX522A/UX522A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (55) 61
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC RIDA VIII</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-12 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-13 07:03</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-14 07:02</td>
+		
+		<td align="center" style="background:#f9f9f9;">530</td>
+		<td align="center" style="background:#f9f9f9;">1356</td>
+		<td align="center" style="background:#f9f9f9;">54</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSYY003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			KQ519R/QI524A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			19 (33) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SHAY</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-13 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-13 10:59</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-15 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2545</td>
+		<td align="center" style="background:#f9f9f9;">1128</td>
+		<td align="center" style="background:#f9f9f9;">218</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVGA004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV521R/HV521R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			17 (06) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VAIGA III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-13 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-13 15:02</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-14 22:54</td>
+		
+		<td align="center" style="background:#f9f9f9;">1008</td>
+		<td align="center" style="background:#f9f9f9;">1043</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOPK002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2511W/2511W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			39 (47) 60
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SPARKLE</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-13 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-14 09:45</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-15 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2079</td>
+		<td align="center" style="background:#f9f9f9;">1023</td>
+		<td align="center" style="background:#f9f9f9;">224</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN014
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT524R/HT525A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			14 (04) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-14 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-15 00:55</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-15 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">377</td>
+		<td align="center" style="background:#f9f9f9;">375</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MTNS001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GO523N/GO523N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (34) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC TIANSHAN</td>
+		<td align="center" style="background:#f9f9f9;">ORINTE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-14 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-15 04:52</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-15 23:07</td>
+		
+		<td align="center" style="background:#f9f9f9;">289</td>
+		<td align="center" style="background:#f9f9f9;">1170</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT014
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX524R/HX525A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-15 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-15 20:50</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-16 11:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">300</td>
+		<td align="center" style="background:#f9f9f9;">403</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ORGS002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2523E/2523E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			19 (34) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEASPAN BRIGHTNESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-15 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-16 01:20</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-17 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">3714</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OSBS002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2522E/2522E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (56) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEASPAN BELIEF</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-15 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-16 01:55</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-17 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1616</td>
+		<td align="center" style="background:#f9f9f9;">2490</td>
+		<td align="center" style="background:#f9f9f9;">120</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOCB004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2522E/2522E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE COLUMBA</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-17 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-17 10:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-19 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">4316</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNJR003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW521R/HW525A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NEW JERSEY III</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-17 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-17 22:06</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-18 15:07</td>
+		
+		<td align="center" style="background:#f9f9f9;">760</td>
+		<td align="center" style="background:#f9f9f9;">71</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOPP001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2523E/2523E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			42 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SAPPHIRE</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-17 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-18 00:48</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-20 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">5846</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MTRN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV522R/HV522R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (12) 16
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC TURIN III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-18 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-18 18:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-19 21:57</td>
+		
+		<td align="center" style="background:#f9f9f9;">932</td>
+		<td align="center" style="background:#f9f9f9;">1047</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI019
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG524A/HG524R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-19 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-19 23:48</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-20 21:53</td>
+		
+		<td align="center" style="background:#f9f9f9;">1013</td>
+		<td align="center" style="background:#f9f9f9;">819</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOSP001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2522E/2522E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SPLENDOUR</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-19 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-20 08:35</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-22 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">5914</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MJUT002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA518R/FA518R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC JULIETTE</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-21 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-21 03:04</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-22 13:20</td>
+		
+		<td align="center" style="background:#f9f9f9;">1519</td>
+		<td align="center" style="background:#f9f9f9;">802</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN015
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT525R/HT526A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			14 (04) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-21 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-21 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-22 06:02</td>
+		
+		<td align="center" style="background:#f9f9f9;">399</td>
+		<td align="center" style="background:#f9f9f9;">441</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCCI001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HW522R/HW522R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CALI</td>
+		<td align="center" style="background:#f9f9f9;">PERTWI</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-21 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-22 08:04</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-22 18:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">493</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MAZA001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FD514E/FD525W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AZRA</td>
+		<td align="center" style="background:#f9f9f9;">DRAGON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-22 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-22 15:26</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-24 06:09</td>
+		
+		<td align="center" style="background:#f9f9f9;">1181</td>
+		<td align="center" style="background:#f9f9f9;">1897</td>
+		<td align="center" style="background:#f9f9f9;">22</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSEM001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK523A/UK523A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			18 (27) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC EMMA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-22 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-22 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-24 04:15</td>
+		
+		<td align="center" style="background:#f9f9f9;">449</td>
+		<td align="center" style="background:#f9f9f9;">2882</td>
+		<td align="center" style="background:#f9f9f9;">30</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			LORX001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			003E/003E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">LORI</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-22 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-22 21:30</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-24 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">483</td>
+		<td align="center" style="background:#f9f9f9;">584</td>
+		<td align="center" style="background:#f9f9f9;">480</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVDX003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2512W/2524E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			21 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MONTEVIDEO EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN1</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-23 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-24 06:54</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-25 21:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">1666</td>
+		<td align="center" style="background:#f9f9f9;">2130</td>
+		<td align="center" style="background:#f9f9f9;">174</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			IQUX004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2523E/2523E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">IQUIQUE EXPRESS</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-23 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-24 08:42</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-26 14:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">2281</td>
+		<td align="center" style="background:#f9f9f9;">2355</td>
+		<td align="center" style="background:#f9f9f9;">234</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MEUR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QI525A/QI525A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (17) 22
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">EUROPE</td>
+		<td align="center" style="background:#f9f9f9;">CRIOCA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-24 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-24 12:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-25 13:10</td>
+		
+		<td align="center" style="background:#f9f9f9;">45</td>
+		<td align="center" style="background:#f9f9f9;">928</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCOO005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HV523R/HV523R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			16 (04) 02
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC COLETTE III</td>
+		<td align="center" style="background:#f9f9f9;">DPHIN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-25 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-25 15:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-26 15:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">999</td>
+		<td align="center" style="background:#f9f9f9;">618</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MIRE001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FK525A/FK525A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (29) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC IRENE</td>
+		<td align="center" style="background:#f9f9f9;">FALCON</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-25 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-25 23:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-26 17:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">325</td>
+		<td align="center" style="background:#f9f9f9;">728</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCHY004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FA523A/FA523A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (48) 63
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CHIYO</td>
+		<td align="center" style="background:#f9f9f9;">ASPA2E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-26 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-26 16:35</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-28 18:50</td>
+		
+		<td align="center" style="background:#f9f9f9;">2052</td>
+		<td align="center" style="background:#f9f9f9;">2979</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MCTI020
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HG525A/HG525R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (13) 17
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">CAPTAIN THANASIS I</td>
+		<td align="center" style="background:#f9f9f9;">KAGUYA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-26 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-26 18:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-27 23:58</td>
+		
+		<td align="center" style="background:#f9f9f9;">828</td>
+		<td align="center" style="background:#f9f9f9;">1094</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MMMV002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			KQ521R/KQ526A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			22 (35) 40
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MAGNITUDE VII</td>
+		<td align="center" style="background:#f9f9f9;">PANDA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-26 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-26 18:53</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-28 08:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">2128</td>
+		<td align="center" style="background:#f9f9f9;">581</td>
+		<td align="center" style="background:#f9f9f9;">158</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFRT015
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HX526R/HX526A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (11) 13
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FORTUNE F</td>
+		<td align="center" style="background:#f9f9f9;">GHRN</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-27 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-28 01:55</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-28 13:55</td>
+		
+		<td align="center" style="background:#f9f9f9;">78</td>
+		<td align="center" style="background:#f9f9f9;">367</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLUC001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QK524A/QK524A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			20 (36) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LUCIANA</td>
+		<td align="center" style="background:#f9f9f9;">CHNCLE</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-28 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-28 15:00</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-29 16:19</td>
+		
+		<td align="center" style="background:#f9f9f9;">444</td>
+		<td align="center" style="background:#f9f9f9;">1590</td>
+		<td align="center" style="background:#f9f9f9;">102</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MKAM002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX523A/UX523A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			02 (15) 21
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC KALAMATA VII</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-28 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-28 16:05</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-30 00:01</td>
+		
+		<td align="center" style="background:#f9f9f9;">747</td>
+		<td align="center" style="background:#f9f9f9;">836</td>
+		<td align="center" style="background:#f9f9f9;">248</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(P)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOPK003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2524E/2524E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			41 (49) 62
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SPARKLE</td>
+		<td align="center" style="background:#f9f9f9;">AN3E</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-28 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-28 20:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-06-30 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">1365</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">18</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(P)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MGAY003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FZ513R/FZ513R
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			23 (30) 42
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GAYANE</td>
+		<td align="center" style="background:#f9f9f9;">AN3W</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-29 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-29 18:25</td>
+		<td align="center" style="background:#f9f9f9;">2025-07-01 00:19</td>
+		
+		<td align="center" style="background:#f9f9f9;">3011</td>
+		<td align="center" style="background:#f9f9f9;">520</td>
+		<td align="center" style="background:#f9f9f9;">70</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQIN016
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HT526R/HT527A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">
+			56 (47) 45
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QINGDAO F</td>
+		<td align="center" style="background:#f9f9f9;">SRISEA</td>
+		
+		
+		<!-- PNIT 안진성차장 요청. 20200630-->
+		<td align="center" style="background:#f9f9f9;">2025-06-30 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2025-06-30 13:40</td>
+		<td align="center" style="background:#f9f9f9;">2025-07-01 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">358</td>
+		<td align="center" style="background:#f9f9f9;">469</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	</tbody>
+	</table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+__pycache__/
+.pytest_cache/
+.DS_Store
+.venv/
+mlflow.db
+mlruns/
+logs/*
+!logs/.gitkeep
+data/uploads/*
+!data/uploads/.gitkeep
+data/ais/*
+!data/ais/.gitkeep
+reports/

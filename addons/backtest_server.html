@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>접안 예측 점검</title>
+<style>
+:root { --bg: #f4f5f7; --fg: #1b1f24; --muted: #66707a; --line: #d5d9de; --card: #fff; --good: #1f7a3a; --bad: #b42318; --hi: #fff7d6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #14171a; --fg: #e6e8eb; --muted: #9aa3ad; --line: #30363d; --card: #1c2126; --good: #4cc27a; --bad: #ff7b72; --hi: #3a3214; } }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.45 -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+.wrap { max-width: 1400px; margin: 0 auto; padding: 16px; }
+h1 { font-size: 18px; margin: 0 0 4px; }
+.sub { color: var(--muted); font-size: 12.5px; }
+.bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+input, button { font: inherit; padding: 6px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--card); color: var(--fg); }
+button { cursor: pointer; }
+button.main { background: var(--fg); color: var(--bg); }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin: 10px 0; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px; }
+.card b { display: block; font-size: 20px; }
+.card span { color: var(--muted); font-size: 12px; }
+.phase { padding: 8px 10px; border-radius: 6px; background: var(--hi); margin: 8px 0; font-size: 13px; }
+.tw { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; white-space: nowrap; font-size: 12.5px; }
+th, td { padding: 6px 8px; border-bottom: 1px solid var(--line); text-align: left; }
+th { position: sticky; top: 0; background: var(--card); font-weight: 600; }
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+.g { color: var(--good); font-weight: 600; } .b { color: var(--bad); font-weight: 600; }
+.note { color: var(--muted); font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>HJNC 접안 예측 점검 (과거 시점으로 돌려 보기)</h1>
+  <div class="sub">기준 시각을 과거로 정하면 그 시각까지 알 수 있던 기록만으로 예측하고, 실제 접안·출항 기록과 비교합니다. 데이터: HJNC 선석배정현황 (2026-10-08 01:47 내려받음) 고정</div>
+
+  <div class="bar">
+    <button id="prev">◀ 하루 전</button>
+    <label>기준 시각 <input id="asof" type="datetime-local" value="2026-10-05T00:00"></label>
+    <label>범위(시간) <input id="hours" type="number" value="24" min="1" max="168" style="width:70px"></label>
+    <button class="main" id="go">예측</button>
+    <button id="next">하루 뒤 ▶</button>
+    <span class="sub" id="msg"></span>
+  </div>
+
+  <div class="phase" id="phase"></div>
+  <div class="cards" id="cards"></div>
+  <div class="tw"><table>
+    <thead><tr>
+      <th>선박</th><th>선석</th><th>항로</th><th class="n">물량(box)</th>
+      <th>터미널 예정 접안</th><th>모델 예측 접안</th><th>실제 접안</th>
+      <th class="n">터미널 오차</th><th class="n">모델 오차</th><th>더 가까운 쪽</th>
+      <th>모델 예측 출항</th><th>실제 출항(확정)</th><th class="n">출항 오차</th>
+      <th>예측 작업완료</th><th>실제 작업완료</th><th>상태</th>
+    </tr></thead>
+    <tbody id="tb"></tbody>
+  </table></div>
+  <div class="note" id="note"></div>
+  <div class="note">오차 = 예측 − 실제 (분). +는 실제가 더 일찍, −는 실제가 더 늦게 접안. 터미널 예정 = 반입 마감 + 10시간 (접안 10시간 전 시점의 터미널 예정).
+    실제 출항(확정)은 엑셀 출항일시(정각이 많은 확정 시각), 작업완료는 하역이 끝난 실제 시각입니다.</div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const m = h => h == null ? '' : `${h > 0 ? '+' : ''}${Math.round(h * 60)}분`;
+const hm = s => s ? s.slice(5) : '—';
+const pct = v => v == null ? '-' : Math.round(v * 100) + '%';
+const mn = v => v == null ? '-' : Math.round(v * 60) + '분';
+async function run() {
+  const asof = $('asof').value.replace('T', ' '), hours = $('hours').value;
+  $('msg').textContent = '계산 중…';
+  const r = await fetch(`api?as_of=${encodeURIComponent(asof)}&hours=${hours}`);
+  const d = await r.json();
+  if (!r.ok) { $('msg').textContent = d.detail || r.status; return; }
+  $('msg').textContent = `모델 ${d.model_version} · 데이터 마지막 접안 ${d.data_last_berth}`;
+  $('phase').textContent = d.phase;
+  const s = d.summary;
+  const cards = [
+    ['대상 배 / 실제 접안 확인', `${s.n} / ${s.n_eval}척`],
+    ['접안 평균 오차 (터미널 → 모델)', `${mn(s.term_mae_h)} → ${mn(s.model_mae_h)}`],
+    ['30분 안 적중 (터미널 → 모델)', `${pct(s.term_in30)} → ${pct(s.model_in30)}`],
+    ['1시간 넘게 틀림 (터미널 → 모델)', `${s.term_over1h} → ${s.model_over1h}척`],
+    ['더 가까운 쪽 (모델 : 터미널)', `${s.model_closer} : ${s.term_closer}`],
+    ['출항 평균 오차 (모델, 확정 출항 기준)', s.dep_mae_h == null ? '-' : `${s.dep_mae_h.toFixed(1)}시간 (3시간 안 ${pct(s.dep_in3h)})`],
+    ['작업완료 평균 오차 (모델)', s.work_done_mae_h == null ? '-' : `${s.work_done_mae_h.toFixed(1)}시간`]
+  ];
+  $('cards').innerHTML = cards.map(([k, v]) => `<div class="card"><span>${k}</span><b>${v}</b></div>`).join('');
+  $('tb').innerHTML = d.vessels.map(x => {
+    let who = '';
+    if (x.model_err_h != null) { const a = Math.abs(x.model_err_h), b = Math.abs(x.term_err_h); who = a < b ? '<span class="g">모델</span>' : a > b ? '<span class="b">터미널</span>' : '같음'; }
+    return `<tr><td>${x.vessel}</td><td>${x.berth_no}</td><td>${x.route}</td><td class="n">${x.box.toLocaleString()}</td>
+      <td>${hm(x.plan_berth)}</td><td>${hm(x.pred_berth)}</td><td>${hm(x.actual_berth)}</td>
+      <td class="n">${m(x.term_err_h == null ? null : -x.term_err_h)}</td><td class="n">${m(x.model_err_h == null ? null : -x.model_err_h)}</td><td>${who}</td>
+      <td>${hm(x.pred_departure)}</td><td>${hm(x.actual_departure)}</td><td class="n">${x.dep_err_h == null ? '' : (-x.dep_err_h > 0 ? '+' : '') + (-x.dep_err_h).toFixed(1) + 'h'}</td>
+      <td>${hm(x.pred_work_done)}</td><td>${hm(x.actual_work_done)}</td><td>${x.status}</td></tr>`;
+  }).join('') || '<tr><td colspan="16">이 범위에 터미널 예정 접안인 배가 없습니다.</td></tr>';
+  const notes = [];
+  if (d.already_berthed_before_as_of.length) notes.push(`기준 시각 전에 이미 접안해서 뺀 배: ${d.already_berthed_before_as_of.join(', ')}`);
+  if (d.skipped_no_history.length) notes.push(`이력 20척이 안 돼 예측 못 한 배: ${d.skipped_no_history.join(', ')}`);
+  $('note').textContent = notes.join(' · ');
+}
+function shift(days) {
+  const v = new Date($('asof').value + ':00');
+  v.setDate(v.getDate() + days);
+  const p = n => String(n).padStart(2, '0');
+  $('asof').value = `${v.getFullYear()}-${p(v.getMonth() + 1)}-${p(v.getDate())}T${p(v.getHours())}:${p(v.getMinutes())}`;
+  run();
+}
+$('go').onclick = run; $('prev').onclick = () => shift(-1); $('next').onclick = () => shift(1);
+run();
+</script>
+</body>
+</html>

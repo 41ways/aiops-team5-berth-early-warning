@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIOps 관리자 콘솔 v2.6</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root {
+  /* v2.6: 사용자 화면(early_warning)과 같은 검정·앰버 터미널 톤. --blue 는 강조색(앰버) 자리 */
+  --bg: #000; --card: #0b0b0b; --fg: #d9d9d9; --fg2: #b3b3b3; --muted: #8f8f8f; --line: #262626; --soft: #161616; --strong: #fff;
+  --blue: #ffa028; --blue-soft: #2a1d08; --green: #4ee06a; --green-soft: #0f2414; --amber: #ffd23f; --amber-soft: #2a2408;
+  --red: #ff4040; --red-soft: #2a0d0d; --radius: 2px; --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 14px/1.5 Pretendard, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; word-break: keep-all; }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--blue); text-decoration: none; }
+/* 상단 */
+.top { position: sticky; top: 0; z-index: 10; background: #141414; border-bottom: 1px solid var(--line); }
+.top-in { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 28px; height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 230px; }
+.logo { width: 32px; height: 32px; border-radius: 9px; background: var(--blue); display: grid; place-items: center; }
+.brand b { display: block; font-size: 15px; }
+.brand small { display: block; font-size: 11.5px; color: var(--fg2); margin-top: -2px; }
+.nav { display: flex; gap: 4px; height: 100%; }
+.nav button { border: 0; background: none; padding: 0 14px; height: 100%; font-weight: 600; color: var(--fg2); border-bottom: 2px solid transparent; cursor: pointer; }
+.nav button[aria-selected="true"] { color: var(--blue); border-bottom-color: var(--blue); }
+.right { margin-left: auto; display: flex; align-items: center; gap: 12px; font-size: 12.5px; color: var(--fg2); }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--blue-soft); color: var(--blue); }
+.pill.ok { background: var(--green-soft); color: var(--green); } .pill.warn { background: var(--amber-soft); color: var(--amber); } .pill.bad { background: var(--red-soft); color: var(--red); } .pill.gray { background: var(--soft); color: var(--fg2); border: 1px solid var(--line); }
+.pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+/* 본문 */
+main { max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; }
+.card h2 { margin: 0; font-size: 16px; } .card .sub { margin: 4px 0 0; font-size: 12.5px; color: var(--fg2); }
+.head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+.grid2 { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 20px; align-items: start; }
+.grid2 > div { display: flex; flex-direction: column; gap: 20px; }
+.half { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.kpis { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.kpi { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; min-height: 132px; display: flex; flex-direction: column; }
+.kpi .t { font-size: 12.5px; font-weight: 600; color: var(--fg2); }
+.kpi .v { font-size: 26px; font-weight: 700; margin-top: 4px; letter-spacing: -0.01em; }
+.kpi .v small { font-size: 13px; font-weight: 500; color: var(--fg2); margin-left: 3px; }
+.kpi .f { margin-top: auto; font-size: 11.5px; color: var(--muted); }
+.kpi svg { display: block; margin: 6px 0 4px; }
+.seg { display: inline-flex; gap: 6px; }
+.seg button { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 8px; padding: 5px 11px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: #000; }
+.btn { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 9px; padding: 8px 14px; font-weight: 600; cursor: pointer; }
+.btn:hover { background: var(--soft); } .btn.primary { background: var(--blue); border-color: var(--blue); color: #000; } .btn.danger { color: var(--red); }
+.btn:disabled { opacity: .5; cursor: default; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+input[type=datetime-local], select { border: 1px solid var(--line); border-radius: 2px; padding: 7px 10px; background: var(--bg); color: var(--fg); color-scheme: dark; }
+/* 파이프라인 */
+.pipe { display: grid; grid-template-columns: repeat(7, 1fr); position: relative; margin-top: 6px; }
+.pipe::before { content: ""; position: absolute; left: 7%; right: 7%; top: 24px; height: 2px; background: var(--line); }
+.stage { position: relative; text-align: center; padding: 0 4px; }
+.stage .ic { width: 48px; height: 48px; margin: 0 auto 8px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); display: grid; place-items: center; color: var(--fg2); }
+.stage b { display: block; font-size: 13px; } .stage span { display: block; font-size: 11.5px; color: var(--fg2); }
+.stage em { display: block; font-style: normal; font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+.stage.done .ic { border-color: var(--green); color: var(--green); background: var(--green-soft); } .stage.done em { color: var(--green); }
+.stage.fail .ic { border-color: var(--red); color: var(--red); background: var(--red-soft); } .stage.fail em { color: var(--red); }
+.stage.keep .ic { border-color: var(--amber); color: var(--amber); } .stage.keep em { color: var(--amber); }
+.stage.wait .ic { border-color: var(--amber); color: var(--amber); border-style: dashed; } .stage.wait em { color: var(--amber); }
+.stage.run .ic { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); } .stage.run em { color: var(--blue); }
+/* 표 */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font-weight: 600; color: var(--fg2); font-size: 12px; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+.tag { display: inline-block; padding: 1px 8px; border-radius: 6px; background: var(--soft); border: 1px solid var(--line); font-size: 11.5px; color: var(--fg2); }
+.scroll { max-height: 420px; overflow: auto; }
+/* 모델 카드 */
+.kv { display: grid; grid-template-columns: max-content 1fr; gap: 9px 14px; font-size: 13px; }
+.kv dt { color: var(--fg2); } .kv dd { margin: 0; text-align: right; font-weight: 600; }
+.kv.left dd { text-align: left; font-weight: 500; }
+.mname { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin: 2px 0 12px; }
+/* 알람 */
+.alerts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.alerts li { display: grid; grid-template-columns: 26px 1fr; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.alerts li:last-child { border-bottom: 0; }
+.alerts .ai { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; background: var(--blue-soft); color: var(--blue); }
+.alerts .ai.OK { background: var(--green-soft); color: var(--green); } .alerts .ai.WARN { background: var(--amber-soft); color: var(--amber); } .alerts .ai.FAIL { background: var(--red-soft); color: var(--red); }
+.alerts small { display: block; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+.msg { font-size: 12.5px; color: var(--fg2); }
+.result { background: var(--soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+pre.log { margin: 0; max-height: 420px; overflow: auto; background: #050505; color: #d9d9d9; border: 1px solid var(--line); border-radius: 2px; padding: 14px; font: 12px/1.6 ui-monospace, Menlo, monospace; white-space: pre-wrap; }
+.chart svg { display: block; width: 100%; }
+.legend { display: flex; gap: 14px; font-size: 12px; color: var(--fg2); margin-top: 6px; }
+.legend i { display: inline-block; width: 14px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+.drop { border: 2px dashed var(--line); border-radius: 12px; padding: 22px; text-align: center; color: var(--fg2); }
+[data-panel][hidden] { display: none !important; }
+@media (max-width: 1100px) { .grid2 { grid-template-columns: 1fr; } .kpis { grid-template-columns: repeat(3, 1fr); } .half { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .kpis { grid-template-columns: 1fr 1fr; } .pipe { grid-template-columns: repeat(4, 1fr); row-gap: 18px; } .pipe::before { display: none; } .top-in { gap: 12px; overflow-x: auto; } .brand { min-width: 0; } }
+
+/* v2.6 통일: 글꼴·모서리·스크롤바 */
+body { font: 13px/1.5 var(--mono); }
+.brand b, .card h2, .mname, .nav button, .kpi .t { font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif; }
+.brand b { color: var(--strong); letter-spacing: .04em; }
+.logo { border-radius: 2px; }
+.nav button { color: var(--fg2); }
+.nav button[aria-selected="true"] { color: var(--blue); }
+.card { border-radius: 2px; }
+.card h2 { color: var(--strong); font-size: 14px; letter-spacing: .02em; }
+.card .sub, .msg { color: var(--fg2); }
+.kpi { border-radius: 2px; background: var(--bg); }
+.kpi .v { color: var(--strong); font-family: var(--mono); font-weight: 600; }
+.kpi .t { text-transform: none; }
+th { color: var(--fg2); text-transform: uppercase; letter-spacing: .04em; font-size: 11px; }
+td { color: var(--fg); }
+td b { color: var(--strong); }
+tbody tr:hover td { background: var(--soft); }
+.tag { background: var(--bg); border-color: var(--line); color: var(--fg2); border-radius: 2px; }
+.pill { border-radius: 999px; }
+.pill.gray { background: var(--bg); color: var(--fg2); border-color: var(--line); }
+.stage b { color: var(--strong); }
+.alerts .ai { border-radius: 2px; }
+.result { background: var(--bg); border-color: var(--line); border-radius: 2px; }
+.drop { border-color: var(--line); border-radius: 2px; color: var(--fg2); }
+.drop:hover { border-color: var(--blue); color: var(--blue); }
+.right a { color: var(--blue); }
+.kv dd { color: var(--strong); }
+code { color: var(--blue); }
+*{scrollbar-width:thin;scrollbar-color:#5c3d10 #0b0b0b}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:#0b0b0b}
+::-webkit-scrollbar-thumb{background:#4a3210;border-radius:5px;border:2px solid #0b0b0b}
+::-webkit-scrollbar-thumb:hover{background:#ffa028}
+::-webkit-scrollbar-corner{background:#0b0b0b}
+
+/* 알약 모양 제거: 상태는 색 글자 + 작은 네모, 태그는 글자만 */
+.pill, .pill.ok, .pill.warn, .pill.bad, .pill.gray { border-radius: 0; background: none !important; border: 0 !important; padding: 0; font-weight: 600; }
+.pill .dot { border-radius: 0; width: 7px; height: 7px; }
+.pill.gray { color: var(--fg2); }
+.tag { border: 0 !important; background: none !important; padding: 0; border-radius: 0; color: var(--fg2); }
+.seg button, .btn, input[type=datetime-local], select, .kpi, .card, .result, .drop, .logo { border-radius: 0; }
+.stage .ic { border-radius: 0; }
+.alerts .ai { border-radius: 0; background: none !important; width: auto; height: auto; font-family: var(--mono); }
+.alerts li { grid-template-columns: 18px 1fr; }
+
+/* 좁은 화면 */
+.top-in { scrollbar-width: none; } .top-in::-webkit-scrollbar { display: none; }
+.nav button { white-space: nowrap; }
+@media (max-width: 760px) { .brand small, .right { display: none; } .brand { min-width: auto; } .top-in { padding: 0 12px; gap: 10px; } .nav button { padding: 0 8px; }
+  main { padding: 12px; } .head { flex-wrap: wrap; } .kpis { grid-template-columns: 1fr 1fr; } }
+
+/* 가독성 한 단계 (관제 톤 유지, 크기·대비만) */
+body { font-size: 14.5px; }
+.card h2 { font-size: 16px; } .card .sub, .msg { font-size: 13px; }
+.kpi .t { font-size: 13.5px; font-weight: 600; } .kpi .v { font-size: 30px; } .kpi .f { font-size: 12.5px; }
+th { font-size: 12.5px; } td { font-size: 14px; }
+.stage b { font-size: 14px; } .stage span, .stage em { font-size: 12.5px; }
+.kv { font-size: 14px; } .alerts li { font-size: 13.5px; } .alerts small { font-size: 12.5px; }
+pre.log { font-size: 13px; } .tag { font-size: 12.5px; } .pill { font-size: 13px; }
+.seg button, .btn { font-size: 13.5px; } .nav button { font-size: 15px; } .brand small { font-size: 12.5px; }
+.legend { font-size: 12.5px; }
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="brand">
+    <div class="logo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+    <div><b>AIOps</b><small>신항 접안 예측 · 관리자 콘솔</small></div>
+  </div>
+  <nav class="nav" role="tablist">
+    <button role="tab" data-tab="dash" aria-selected="true">Dashboard</button>
+    <button role="tab" data-tab="sim" aria-selected="false">Simulation</button>
+    <button role="tab" data-tab="acc" aria-selected="false">정확도 검증</button>
+    <button role="tab" data-tab="data" aria-selected="false">Datasets</button>
+    <button role="tab" data-tab="sys" aria-selected="false">System</button>
+  </nav>
+  <div class="right"><span id="clock"></span><span class="pill" id="srcPill">MODEL_SOURCE</span><a href="/early-warning">사용자 화면 ↗</a></div>
+</div></header>
+
+<main>
+<!-- Dashboard -->
+<section data-panel="dash" style="display:flex;flex-direction:column;gap:20px">
+  <div class="card">
+    <div class="head">
+      <div><h2>운영 지표 요약</h2><p class="sub">업무 요청(접안 예측·일정표·손실 계산 API)만 logs/requests.log 에서 구간별로 집계합니다. 관리자 콘솔 호출·헬스체크·드리프트 시연은 빼고 셉니다. 모델 오차는 터미널별 최근 14일(15척 이상) 기준.</p></div>
+      <div class="seg" id="win"><button data-w="5m" aria-pressed="true">5분</button><button data-w="1h" aria-pressed="false">1시간</button><button data-w="6h" aria-pressed="false">6시간</button><button data-w="24h" aria-pressed="false">24시간</button></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="t">업무 요청 수</span><span class="v" id="kReq">-</span><span id="sReq"></span><span class="f" id="fReq">최근 5분</span></div>
+      <div class="kpi"><span class="t">평균 응답시간</span><span class="v" id="kLat">-</span><span id="sLat"></span><span class="f" id="fLat">최근 5분</span></div>
+      <div class="kpi"><span class="t" title="업무 요청 중 서버 오류(5xx) 없이 응답한 비율">정상 응답률</span><span class="v" id="kOk">-</span><span id="sOk"></span><span class="f" id="fOk">최근 5분</span></div>
+      <div class="kpi"><span class="t">모델 오차 (MAE, 최근 14일)</span><span class="v" id="kMae">-</span><span id="sMae"></span><span class="f" id="fMae">터미널 예정 대비</span></div>
+      <div class="kpi"><span class="t">드리프트 상태</span><span class="v" id="kDrift">-</span><span class="f" id="fDrift">Simulation 탭에서 배치 전송</span></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <div class="card">
+        <div class="head"><div><h2>드리프트 감지 기반 재학습 파이프라인</h2><p class="sub">Simulation 탭에서 배치를 보내면 그 요청이 실제로 거쳐 간 단계를 표시합니다 (재학습은 요청 밖 백그라운드 스레드).</p></div><span class="pill gray" id="pipeState">아직 실행 안 함</span></div>
+        <div class="pipe" id="pipe"></div>
+      </div>
+      <div class="card">
+        <div class="head"><div><h2>재학습 이력</h2><p class="sub">MLflow Model Registry(<span id="mName">BERTH_ARRIVAL_Corrector</span>)에 등록된 버전을 그대로 보여 줍니다.</p></div></div>
+        <div class="scroll"><table><thead><tr><th>버전</th><th>등록 시각</th><th>모드</th><th class="num">MAE</th><th class="num">터미널 예정</th><th>스테이지</th><th></th></tr></thead><tbody id="mTable"></tbody></table></div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="head"><h2>현재 운영 모델</h2><span class="pill ok" id="health"><span class="dot"></span>Healthy</span></div>
+        <div class="mname" id="curName">BERTH_ARRIVAL_Corrector <span class="tag" id="curVer">-</span></div>
+        <dl class="kv" id="curKv"></dl>
+        <div class="row" style="margin-top:14px"><button class="btn" id="refreshAll">새로고침</button></div>
+      </div>
+      <div class="card">
+        <div class="head"><div><h2>최근 알람</h2><p class="sub">"aiops" 로거 이벤트([WARN]/[INFO]/[OK])를 그대로 보여 줍니다.</p></div></div>
+        <ul class="alerts" id="alerts"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Simulation -->
+<section data-panel="sim" hidden style="display:flex;flex-direction:column;gap:20px">
+  <div class="card">
+    <div class="head"><div><h2>드리프트 시뮬레이션</h2><p class="sub">업로드된 실제 기록에서 HJNC 14일치를 골라 /predict/replay 로 흘려보냅니다. "드리프트 주입"은 정답에 +30분을 인위로 더해 평균 치우침 규칙(≥20분)으로 감지 → 최근 28일로 재학습 → 게이트를 일으킵니다. 새 모델이 운영 모델보다 1분 이상 좋으면 자동 승격, 차이가 작으면 후보(Staging)로 등록하고 관리자가 버튼으로 승격합니다.</p></div></div>
+    <div class="row">
+      <button class="btn" id="simNormal">정상 구간 14일 (5~7월)</button>
+      <button class="btn" id="simBusy">혼잡 구간 14일 (8~10월, 주입 없음)</button>
+      <button class="btn primary" id="simDrift">드리프트 주입 (+30분) 14일</button>
+      <button class="btn danger" id="simReset">v1으로 되돌리기</button>
+    </div>
+    <p class="msg" id="simMsg" style="margin-top:12px"></p>
+    <div class="result" id="simResult" hidden></div>
+  </div>
+  <div class="card">
+    <div class="head"><div><h2>파이프라인 진행</h2><p class="sub">재학습 상태(/retrain/status)를 2초마다 확인합니다.</p></div></div>
+    <div class="pipe" id="pipe2"></div>
+  </div>
+  <div class="card"><div class="head"><h2>판정·배포 기준</h2></div><dl class="kv left" id="gateKv"></dl></div>
+</section>
+
+<!-- 정확도 검증 -->
+<section data-panel="acc" hidden style="display:flex;flex-direction:column;gap:20px">
+  <div class="card">
+    <div class="head"><div><h2>과거인 척 예측</h2><p class="sub">기준 시각까지 접안한 배만 보고 다음 48시간을 예측하고, 이미 접안한 배는 실제를 붙입니다.</p></div></div>
+    <div class="row">
+      <label class="msg">터미널 <select id="term"><option value="ALL">신항 전체</option></select></label>
+      <input id="asOf" type="datetime-local" step="60">
+      <button class="btn primary" id="accRun">이 시각으로 예측</button>
+      <button class="btn" id="accPast">48시간 전으로</button>
+      <button class="btn" id="accNow">지금</button>
+      <span class="msg" id="accMsg"></span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="head"><div><h2>터미널별 정확도</h2><p class="sub">배마다 접안 10시간 전(반입 마감) 시점에 그때까지 접안한 배만 보고 낸 예측 vs 실제 접안. 모델은 HJNC 2025년으로만 학습.</p></div></div>
+    <table><thead><tr><th>터미널</th><th class="num">검증 척수</th><th class="num">터미널 예정 오차</th><th class="num">모델 오차</th><th class="num">30분 안 (예정→모델)</th><th>비고</th></tr></thead><tbody id="accTerm"></tbody></table>
+  </div>
+  <div class="card">
+    <div class="head"><div><h2>예측 시점별 정확도</h2><p class="sub">운영 구간(2026-05~)에 작업이 끝난 배를 접안 48·24·6시간 전과 반입 마감(10시간 전)·최종(1시간 전) 시점에 그때까지 접안한 배만 보고 다시 예측. * 표시는 그 시점 터미널 예정 기록이 없어 반입 마감 시점 예정을 기준으로 쓴 값(실제보다 좋게 나올 수 있음).</p></div></div>
+    <table><thead><tr><th>시점</th><th class="num">척수</th><th class="num">모델 오차</th><th class="num">모델 30분 안</th><th class="num">모델 1시간 안</th><th class="num">평균 치우침</th><th class="num">터미널 예정 오차</th><th class="num">예정 30분 안</th></tr></thead><tbody id="accLead"></tbody></table>
+  </div>
+  <div class="half">
+    <div class="card">
+      <div class="head"><div><h2 id="upTitle">기준 시각 이후 접안 예정</h2><p class="sub" id="upSub"></p></div></div>
+      <div class="scroll"><table><thead><tr><th>배</th><th>터미널·선석</th><th>예정</th><th class="num">예측 지연</th><th class="num">실제 지연</th></tr></thead><tbody id="accUp"></tbody></table></div>
+    </div>
+    <div class="card">
+      <div class="head"><div><h2>기준 시각 전 24시간 접안</h2><p class="sub" id="recSub"></p></div></div>
+      <div class="scroll"><table><thead><tr><th>배</th><th>터미널·선석</th><th>예정</th><th class="num">예정 오차</th><th class="num">모델 오차</th></tr></thead><tbody id="accRec"></tbody></table></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="head"><div><h2>최근 14일 평균 오차 추이</h2><p class="sub">터미널별 최근 14일(15척 이상)에서 모델 MAE가 터미널 예정보다 3분 이상 나쁘거나, RMSE가 60분을 넘거나, 평균 치우침이 20분 이상이면 드리프트 조건.</p></div></div>
+    <div class="chart" id="accChart"></div>
+    <div class="legend"><span><i style="background:var(--blue)"></i>모델</span><span><i style="background:var(--muted)"></i>터미널 예정</span><span><i style="background:var(--red)"></i>드리프트 조건</span></div>
+  </div>
+</section>
+
+<!-- Datasets -->
+<section data-panel="data" hidden style="display:flex;flex-direction:column;gap:20px">
+  <div class="half">
+    <div class="card">
+      <div class="head"><div><h2>선석 스케줄 업로드</h2><p class="sub">신항 5개 터미널 통합 CSV(`터미널` 칸) 또는 HJNC 엑셀 그대로. 올리면 예측·검증이 새 데이터로 다시 계산됩니다 (모델은 다시 학습하지 않음).</p></div></div>
+      <label class="drop" style="display:block;cursor:pointer">파일을 고르세요 (.xlsx / .csv)<input id="upload" type="file" accept=".xlsx,.csv" hidden></label>
+      <p class="msg" id="upMsg" style="margin-top:10px"></p>
+    </div>
+    <div class="card">
+      <div class="head"><div><h2>터미널 홈페이지에서 다시 받기</h2><p class="sub">HJNC·PNIT·HPNT 최신 선석배정현황을 받아 통합 CSV를 만들고 업로드합니다. BNCT는 사이트가 자동 수집을 막아 제외.</p></div></div>
+      <div class="row"><button class="btn primary" id="refreshData">지금 다시 받기</button><span class="msg" id="refMsg"></span></div>
+      <pre class="log" id="refOut" style="margin-top:12px;max-height:180px" hidden></pre>
+    </div>
+  </div>
+  <div class="card">
+    <div class="head"><div><h2>현재 데이터</h2><p class="sub" id="dataSub"></p></div></div>
+    <table><thead><tr><th>터미널</th><th class="num">척수</th><th>기간</th><th>예측·검증</th><th>원본</th></tr></thead><tbody id="dataTable"></tbody></table>
+  </div>
+</section>
+
+<!-- System -->
+<section data-panel="sys" hidden style="display:flex;flex-direction:column;gap:20px">
+  <div class="half">
+    <div class="card"><div class="head"><h2>서버 상태</h2><span class="pill ok" id="sysPill"><span class="dot"></span>ok</span></div><dl class="kv" id="sysKv"></dl></div>
+    <div class="card"><div class="head"><h2>환경 변수 · 버전</h2></div><dl class="kv" id="envKv"></dl></div>
+  </div>
+  <div class="card"><div class="head"><div><h2>업무 규칙 (addons/rules.py)</h2><p class="sub">확인 안 된 값은 계산에 쓰지 않습니다.</p></div></div><table><thead><tr><th>이름</th><th>값</th><th>확인</th></tr></thead><tbody id="rulesTable"></tbody></table></div>
+  <div class="card"><div class="head"><div><h2>로그</h2></div><select id="logSel"></select></div><pre class="log" id="logView"></pre></div>
+</section>
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const mins = h => h == null ? '-' : Math.round(h * 60);
+  const pct = v => v == null ? '-' : Math.round(v * 100) + '%';
+  async function J(path, opt = {}) { const r = await fetch(path, { ...opt, headers: { ...(opt.headers || {}), 'X-Client': 'admin-console' } }); let d; try { d = await r.json(); } catch (e) { d = {}; } return { ok: r.ok, status: r.status, data: d }; }
+  const pad = n => String(n).padStart(2, '0');
+  const local = (ms = Date.now()) => { const d = new Date(ms); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`; };
+
+  // ---------- 탭 ----------
+  let TAB = 'dash';
+  document.querySelectorAll('.nav button').forEach(b => b.addEventListener('click', () => {
+    TAB = b.dataset.tab;
+    document.querySelectorAll('.nav button').forEach(x => x.setAttribute('aria-selected', String(x === b)));
+    document.querySelectorAll('[data-panel]').forEach(p => p.hidden = p.dataset.panel !== TAB);
+    ({ dash: loadDash, sim: loadSim, acc: loadAcc, data: loadData, sys: loadSys })[TAB]();
+  }));
+  setInterval(() => { $('clock').textContent = new Date().toLocaleString('ko-KR'); }, 1000);
+
+  // ---------- 작은 그래프 ----------
+  // 작은 추이 그래프. 요청이 없는 칸(null)은 건너뛰고 있는 칸끼리 잇는다. 점 = 요청이 있던 칸. lo/hi를 주면 축 고정(성공률 0~100)
+  function spark(values, color = '#ffa028', w = 140, h = 34, o = {}) {
+    const pts = values.map((x, i) => x == null ? null : [i, +x]).filter(Boolean);
+    const base = `<line x1="0" x2="${w}" y1="${h - 2}" y2="${h - 2}" stroke="#262626" stroke-width="1"/>`;
+    if (!pts.length) return `<svg width="${w}" height="${h}">${base}</svg>`;
+    const lo = o.lo ?? Math.min(0, ...pts.map(p => p[1])), hi = o.hi ?? Math.max(...pts.map(p => p[1])), sp = hi - lo || 1;
+    const X = i => 3 + i / Math.max(1, values.length - 1) * (w - 6), Y = v => h - 3 - (v - lo) / sp * (h - 6);
+    const d = pts.map((p, k) => (k ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1)).join('');
+    const dots = pts.map(p => `<rect x="${X(p[0]) - 2}" y="${Y(p[1]) - 2}" width="4" height="4" fill="${color}"/>`).join('');
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${base}<path d="${d}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linejoin="round"/>${dots}</svg>`;
+  }
+  function lineChart(el, series, labels, marks) {
+    const W = Math.max(320, el.clientWidth || 900), H = 220, L = 40, R = 12, T = 10, B = 26;
+    const all = series.flatMap(s => s.values.filter(x => x != null)); const hi = Math.max(10, ...all) * 1.1;
+    const X = i => L + i / Math.max(1, labels.length - 1) * (W - L - R), Y = v => T + (1 - v / hi) * (H - T - B);
+    let g = '';
+    for (let k = 0; k <= 4; k++) { const v = hi * k / 4; g += `<line x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#262626"/><text x="${L - 6}" y="${Y(v) + 4}" font-size="12.5" text-anchor="end" fill="#a6a6a6">${Math.round(v)}</text>`; }
+    labels.forEach((l, i) => { if (i % Math.ceil(labels.length / 8) === 0) g += `<text x="${X(i)}" y="${H - 6}" font-size="12.5" text-anchor="middle" fill="#a6a6a6">${l.slice(5)}</text>`; });
+    (marks || []).forEach(i => { g += `<rect x="${X(i) - 2}" y="${T}" width="4" height="${H - T - B}" fill="#ff4040" opacity=".22"/>`; });
+    for (const s of series) { let d = '', pen = false; s.values.forEach((v, i) => { if (v == null) { pen = false; return; } d += (pen ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1); pen = true; }); g += `<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" ${s.dash ? 'stroke-dasharray="5 4"' : ''}/>`; }
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" height="${H}">${g}<text x="${L - 6}" y="9" font-size="12" text-anchor="end" fill="#a6a6a6">분</text></svg>`;
+  }
+
+  // ---------- 파이프라인 ----------
+  const ICONS = {
+    in: '<path d="M4 14v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M12 3v11m-4-4 4 4 4-4"/>',
+    mon: '<path d="M4 20V10m6 10V4m6 16v-7m4 7H2"/>',
+    det: '<circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/>',
+    trg: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M4.9 4.9l2.1 2.1m10 10 2.1 2.1m0-14.2-2.1 2.1m-10 10-2.1 2.1"/>',
+    trn: '<path d="M3 7l9-4 9 4-9 4-9-4zm0 5 9 4 9-4M3 17l9 4 9-4"/>',
+    reg: '<rect x="4" y="5" width="16" height="15" rx="2"/><path d="M9 5V3h6v2M8 11h8m-8 4h5"/>',
+    dep: '<path d="M7 18a4 4 0 0 1-.6-8A6 6 0 0 1 18 9a4 4 0 0 1-.5 9H7z"/>'
+  };
+  const STAGES = [['in', '데이터 수집', '배치 수신'], ['mon', '데이터 모니터링', '예측 기록 누적'], ['det', '드리프트 감지', 'MAE vs 터미널, RMSE'], ['trg', '재학습 트리거', '조건 충족 시 시작'], ['trn', '모델 학습', 'fine-tuning'], ['reg', '모델 등록', 'MLflow Registry'], ['dep', '승격', '1분 이상 좋으면 자동 · 아니면 관리자']];
+  function drawPipe(el, states) {
+    el.innerHTML = STAGES.map(([ic, t, s], i) => { const st = states[i] || ''; const txt = { done: '완료', fail: '중단', run: '진행 중', wait: '기존 버전 유지', keep: '기존 버전 유지' }[st] || '대기 중';
+      return `<div class="stage ${st}"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONS[ic]}</svg></div><b>${t}</b><span>${s}</span><em>${txt}</em></div>`; }).join('');
+  }
+  function pipeStates(check, retrain) {
+    // check: 마지막 배치 응답 drift_check, retrain: /retrain/status
+    if (retrain && retrain.running) return ['done', 'done', 'done', 'done', 'run', '', ''];
+    const last = retrain && retrain.last;
+    if (check && check.status === 'ok') return ['done', 'done', 'done', '', '', '', ''];
+    if (last) {
+      if (last.status === 'retrain_triggered') {
+        const serving = String((retrain && retrain.serving_version) || '');
+        if (last.staged && !last.promoted && !serving.endsWith(':v' + last.version)) return ['done', 'done', 'done', 'done', 'done', 'done', 'wait'];   // 차이가 작아 후보로만 등록 → 관리자 승격 대기
+        if (last.staged) return ['done', 'done', 'done', 'done', 'done', 'done', 'done'];
+        if (last.promoted && last.rollback) return ['done', 'done', 'done', 'done', 'done', 'done', 'keep'];   // 예전 버전으로 되돌림 = 기존 버전 유지
+        return last.promoted ? ['done', 'done', 'done', 'done', 'done', 'done', 'done'] : ['done', 'done', 'done', 'done', 'done', 'fail', 'keep'];   // 게이트 미통과 → 기존 버전 유지
+      }
+      if (last.status === 'retrain_skipped' || last.status === 'retrain_failed') return ['done', 'done', 'done', 'done', 'fail', '', ''];
+    }
+    return [];
+  }
+  let lastCheck = null;
+
+  // ---------- Dashboard ----------
+  let WIN = '5m';
+  document.querySelectorAll('#win button').forEach(b => b.addEventListener('click', () => { WIN = b.dataset.w; document.querySelectorAll('#win button').forEach(x => x.setAttribute('aria-pressed', String(x === b))); loadSummary(); }));
+  const WTXT = { '5m': '최근 5분', '1h': '최근 1시간', '6h': '최근 6시간', '24h': '최근 24시간' };
+  async function loadSummary() {
+    const r = await J(`/admin/api/summary?window=${WIN}`); if (!r.ok) return; const s = r.data;
+    $('kReq').textContent = s.requests.toLocaleString(); $('sReq').innerHTML = spark(s.series.map(x => x.count));
+    $('kLat').innerHTML = `${Math.round(s.avg_ms)}<small>ms</small>`; $('sLat').innerHTML = spark(s.series.map(x => x.count ? x.ms : null));
+    $('kOk').textContent = s.success_rate == null ? '-' : (s.success_rate * 100).toFixed(1) + '%'; $('sOk').innerHTML = spark(s.series.map(x => x.ok == null ? null : x.ok * 100), '#ffa028', 140, 34, { lo: 0, hi: 100 });
+    $('fReq').textContent = WTXT[WIN] + (s.top_paths.length ? ` · 최다 ${s.top_paths[0][0]}` : '');
+    $('fLat').textContent = `${WTXT[WIN]} · 점 = 요청이 있던 구간`;
+    $('fOk').textContent = s.requests ? `${WTXT[WIN]} · 서버 오류 ${s.requests - Math.round(s.requests * (s.success_rate ?? 1))}건` : `${WTXT[WIN]} · 요청 없음`;
+    const m = s.model; $('kMae').innerHTML = `${mins(m.mae_21)}<small>분</small>`;
+    $('sMae').innerHTML = spark(m.trend.map(t => t.mae_21 == null ? null : t.mae_21 * 60));
+    $('fMae').textContent = `터미널 예정 ${mins(m.terminal_mae_21)}분 · 최근 30일 추이`;
+    const d = s.drift;
+    $('kDrift').textContent = d.retrain_running ? '재학습 중' : d.fallback ? '폴백' : d.last && ((d.last.promoted && d.last.rollback) || (!d.last.promoted && d.last.status === 'retrain_triggered' && !String(m.version || '').endsWith(':v' + d.last.version))) ? '기존 버전 유지' : m.drift_condition ? '조건 충족' : d.last ? (d.last.promoted ? '승격됨' : '유지') : '정상';
+    $('kDrift').style.color = d.retrain_running ? 'var(--blue)' : d.fallback || m.drift_condition ? 'var(--amber)' : 'var(--fg)';
+    $('fDrift').textContent = d.last ? `마지막 재학습 ${d.last.finished_at || ''} · ${d.last.staged && !d.last.promoted ? '기존 ' + String(m.version || '').replace('production:', '') + ' 유지 · 후보 v' + d.last.version + ' 등록 (재학습 이력에서 승격 가능)' : d.last.promoted && d.last.rollback ? '재학습 모델보다 기존 v' + d.last.version + '이 1분 이상 좋아 그대로 씀' : d.last.promoted ? 'v' + d.last.version + ' 승격' : '기존 ' + String(m.version || '').replace('production:', '') + ' 유지 (게이트 미통과)'}` : 'Simulation 탭에서 배치 전송';
+    const rs = await J('/retrain/status'); const st = pipeStates(lastCheck, rs.data);
+    drawPipe($('pipe'), st);
+    $('pipeState').textContent = rs.data.running ? '재학습 중' : st.length ? (st[6] === 'wait' ? '기존 버전 유지 · 후보 등록' : st[6] === 'keep' ? '기존 버전 유지' : st[6] === 'done' ? '승격 완료' : '감지 없음') : '아직 실행 안 함';
+    $('pipeState').className = 'pill ' + (rs.data.running ? '' : st[6] === 'done' ? 'ok' : st.includes('fail') ? 'warn' : 'gray');
+  }
+  async function loadModels() {
+    const r = await J('/admin/api/models'); const m = r.data; const tb = $('mTable');
+    if (!m.available) { tb.innerHTML = `<tr><td colspan="7" class="msg">MLflow를 쓰지 않는 서버입니다 (MODEL_SOURCE=local)</td></tr>`; return m; }
+    $('mName').textContent = m.name;
+    tb.innerHTML = m.versions.map(v => `<tr><td><b>v${v.version}</b></td><td>${esc(v.created.slice(5))}</td><td><span class="tag">${esc(v.mode || '-')}</span></td><td class="num">${v.mae == null ? '-' : mins(v.mae) + '분'}</td><td class="num">${v.baseline_mae == null ? '-' : mins(v.baseline_mae) + '분'}</td><td>${v.stage === 'Production' ? '<span class="pill ok"><span class="dot"></span>Production</span>' : v.stage === 'Staging' ? '<span class="pill"><span class="dot"></span>Staging (후보)</span>' : `<span class="tag">${esc(v.stage)}</span>`}</td><td>${v.stage === 'Production' ? '' : `<button class="btn" data-promote="${v.version}" style="padding:3px 9px;font-size:12px">승격</button>`}</td></tr>`).join('');
+    tb.querySelectorAll('[data-promote]').forEach(b => b.addEventListener('click', async () => { if (!confirm(`v${b.dataset.promote}을 Production으로 바꿀까요? 모든 사용자 화면의 예측이 바뀝니다.`)) return; await J(`/admin/api/models/${b.dataset.promote}/promote`, { method: 'POST' }); loadDash(); }));
+    return m;
+  }
+  async function loadCurrent(m) {
+    const [h, rs, g] = await Promise.all([J('/health'), J('/retrain/status'), J('/metrics/gates')]);
+    const prod = m && m.versions ? m.versions.find(v => v.stage === 'Production') : null;
+    $('curVer').textContent = rs.data.serving_version || (prod ? 'v' + prod.version : '-');
+    const healthy = h.ok && h.data.model_loaded && !h.data.fallback_to_terminal_plan;
+    $('health').className = 'pill ' + (healthy ? 'ok' : 'warn'); $('health').innerHTML = `<span class="dot"></span>${healthy ? 'Healthy' : h.data.fallback_to_terminal_plan ? 'Fallback' : 'Loading'}`;
+    const rows = [['스테이지', prod ? prod.stage : '-'], ['학습 방식', prod ? prod.mode || '-' : '-'], ['MAE / 게이트', prod && prod.mae != null ? `${mins(prod.mae)}분 / ${mins(g.data.deploy_gate.abs_mae_h)}분` : '-'],
+      ['터미널 예정 MAE', prod && prod.baseline_mae != null ? mins(prod.baseline_mae) + '분' : '-'], ['승격 시각', rs.data.promoted_at || '-'], ['로딩 모드', h.data.loading_mode], ['폴백', h.data.fallback_to_terminal_plan ? (h.data.fallback_target || '켜짐') : '꺼짐']];
+    $('curKv').innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+  }
+  async function loadAlerts() {
+    const r = await J('/admin/api/alerts?n=12');
+    const ago = t => { if (!t) return ''; const s = (Date.now() - new Date(t.replace(' ', 'T')).getTime()) / 1000; return s < 60 ? '방금' : s < 3600 ? Math.round(s / 60) + '분 전' : s < 86400 ? Math.round(s / 3600) + '시간 전' : t; };
+    $('alerts').innerHTML = (r.data.alerts || []).map(a => `<li><span class="ai ${a.level}">${a.level === 'OK' ? '✓' : a.level === 'WARN' ? '!' : a.level === 'FAIL' ? '×' : 'i'}</span><div>${esc(a.message)}<small>${ago(a.time)}</small></div></li>`).join('') || '<li><span></span><span class="msg">아직 이벤트가 없습니다</span></li>';
+  }
+  async function loadDash() { $('srcPill').textContent = 'MODEL_SOURCE=' + ((await J('/admin/api/system')).data.env?.MODEL_SOURCE || '-'); await loadSummary(); const m = await loadModels(); await loadCurrent(m); await loadAlerts(); }
+  $('refreshAll').addEventListener('click', loadDash);
+
+  // ---------- Simulation ----------
+  async function loadSim() {
+    const g = (await J('/metrics/gates')).data;
+    $('gateKv').innerHTML = [['드리프트 판정', `터미널별 최근 ${g.drift.window_days ?? 14}일(${g.drift.min_ships ?? 15}척 이상): 모델 MAE ≥ 터미널 예정 MAE + ${mins(g.drift.rel_tolerance_h)}분, RMSE > ${mins(g.drift.abs_rmse_h)}분, 평균 치우침 ≥ ${mins(g.drift.bias_h ?? 0.333)}분 중 하나`], ['재학습 데이터', `최근 ${g.drift.retrain_days ?? 28}일`], ['처음 배포 게이트', g.deploy_gate.initial], ['재학습 게이트', g.deploy_gate.fine_tune], ['배 등급(시간)', g.ship_grades_h.join(' / ')]].map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+    const rs = await J('/retrain/status'); drawPipe($('pipe2'), pipeStates(lastCheck, rs.data));
+  }
+  async function replay(q, label) {
+    document.querySelectorAll('#simNormal,#simBusy,#simDrift,#simReset').forEach(b => b.disabled = true);
+    $('simMsg').textContent = `${label} 전송 중…`;
+    const r = await J(`/predict/replay?${q}`, { method: 'POST' });
+    if (!r.ok) { $('simMsg').textContent = `${label} 실패: ${r.data.detail || r.status}`; document.querySelectorAll('#simNormal,#simBusy,#simDrift,#simReset').forEach(b => b.disabled = false); return; }
+    lastCheck = r.data.drift_check || {};
+    const show = (extra = '') => { $('simResult').hidden = false; $('simResult').innerHTML = `<b>${esc(label)}</b> · 모델 MAE ${mins(r.data.model_mae)}분, 터미널 예정 ${mins(r.data.baseline_mae)}분 · 판정 <span class="tag">${esc(lastCheck.status)}</span>` + (lastCheck.reasons ? ` · 사유 ${[lastCheck.reasons.relative && '터미널 예정보다 나쁨', lastCheck.reasons.absolute && 'RMSE 60분 초과', lastCheck.reasons.bias && '평균 치우침 20분 이상'].filter(Boolean).join(', ') || '-'}` : '') + extra; };
+    show();
+    for (let i = 0; i < 120; i++) {
+      const rs = await J('/retrain/status'); drawPipe($('pipe2'), pipeStates(lastCheck, rs.data));
+      if (!rs.data.running && !(lastCheck.status === 'retrain_scheduled' && i === 0)) {
+        const l = rs.data.last;
+        if (l && (lastCheck.status === 'retrain_scheduled' || lastCheck.status === 'retrain_in_progress')) {
+          const cur = rs.data.production_version ? 'v' + rs.data.production_version : String(rs.data.serving_version || '').replace('production:', '');
+          const head = l.staged && !l.promoted ? `<b style="color:var(--amber)">기존 버전 ${cur} 유지</b> · 개선 폭이 1분 미만이라 후보 v${l.version}만 등록` : l.promoted && l.rollback ? `<b style="color:var(--amber)">기존 버전 v${l.version} 유지</b> · 재학습 모델보다 기존 v${l.version}이 1분 이상 좋아 그대로 씀` : l.promoted ? `<b style="color:var(--green)">운영 모델보다 1분 이상 좋음 → v${l.version} 자동 승격</b>` : `<b style="color:var(--amber)">기존 버전 ${cur} 유지</b> · 게이트 미통과`;
+          show(`<br>재학습 끝: ${head} · 새 모델 MAE ${mins(l.mae)}분, 운영 모델 ${mins(l.prod_mae)}분, 터미널 예정 ${mins(l.baseline_mae)}분` + (l.staged && !l.promoted ? `<div class="row" style="margin-top:10px"><button class="btn primary" id="promoteCand">후보 v${l.version} 승격</button><span class="msg">승격하면 사용자 화면 예측이 바로 바뀝니다. 시연 뒤 "v1으로 되돌리기"</span></div>` : ''));
+          const pb = $('promoteCand');
+          if (pb) pb.addEventListener('click', async () => { pb.disabled = true; const r = await J(`/admin/api/models/${l.version}/promote`, { method: 'POST' }); $('simMsg').textContent = r.ok ? `v${l.version} 승격 완료 (수동)` : `승격 실패: ${r.data.detail || r.status}`; loadSim(); });
+        }
+        break;
+      }
+      $('simMsg').textContent = `${label}: 백그라운드 재학습 중… ${i * 2}초`;
+      await new Promise(res => setTimeout(res, 2000));
+    }
+    $('simMsg').textContent = `${label} 완료 · ${new Date().toLocaleTimeString('ko-KR')}`;
+    document.querySelectorAll('#simNormal,#simBusy,#simDrift,#simReset').forEach(b => b.disabled = false);
+  }
+  $('simNormal').addEventListener('click', () => replay('period=normal', '정상 구간 14일'));
+  $('simBusy').addEventListener('click', () => replay('period=busy', '혼잡 구간 14일'));
+  $('simDrift').addEventListener('click', () => { if (confirm('정답에 +30분을 더해 재학습을 일으킵니다. 승격되면 사용자 화면 예측도 바뀝니다. 진행할까요?')) replay('period=busy&inject_shift_h=0.5', '드리프트 주입 +30분'); });
+  $('simReset').addEventListener('click', async () => { if (!confirm('v1을 Production으로 되돌릴까요?')) return; const r = await J('/admin/api/models/1/promote', { method: 'POST' }); $('simMsg').textContent = r.ok ? 'v1으로 되돌렸습니다' : `실패: ${r.data.detail || r.status}`; lastCheck = null; loadSim(); });
+
+  // ---------- 정확도 검증 ----------
+  let BD = null;
+  async function loadAcc(asOf) {
+    $('accMsg').textContent = '계산 중…';
+    const q = asOf ? `?as_of=${encodeURIComponent(asOf.replace('T', ' '))}` : '';
+    const r = await J('/v25/board' + q); if (!r.ok) { $('accMsg').textContent = r.data.detail || '실패'; return; }
+    BD = r.data; if (!$('asOf').value) $('asOf').value = BD.as_of.replace(' ', 'T');
+    const sel = $('term'), keep = sel.value; sel.innerHTML = '<option value="ALL">신항 전체</option>' + Object.entries(BD.terminals).map(([t, v]) => `<option value="${t}" ${v.labelable ? '' : 'disabled'}>${t}${v.labelable ? '' : ' (척수만)'}</option>`).join(''); sel.value = keep || 'ALL';
+    $('accMsg').textContent = `${BD.file} · 기준 ${BD.as_of}${BD.replay ? ' (과거 시점 재현)' : ''} · ${BD.elapsed_s}s`;
+    renderAcc();
+  }
+  function renderAcc() {
+    const T = $('term').value, f = s => T === 'ALL' || s.terminal === T;
+    $('accTerm').innerHTML = Object.entries(BD.terminals).map(([t, v]) => { const a = v.all; return `<tr><td><b>${t}</b></td><td class="num">${a.n || '-'}</td><td class="num">${a.n ? mins(a.term_mae) + '분' : '-'}</td><td class="num">${a.n ? mins(a.mae) + '분' : '-'}</td><td class="num">${a.n ? pct(a.term_in30) + ' → ' + pct(a.in30) : '-'}</td><td class="msg">${!v.labelable ? '반입 마감이 실제 접안에 맞춰 다시 계산됨 → 척수만' : (v.trained_on ? '학습 터미널 (테스트 2026-05~)' : '학습에 안 쓴 터미널')} · ${v.first} ~ ${v.last}</td></tr>`; }).join('');
+    const up = BD.upcoming.filter(f), rec = BD.recent.filter(f);
+    $('upTitle').textContent = `기준 시각 이후 ${BD.horizon_h}시간 접안 예정 (${up.length}척)`;
+    const done = up.filter(s => s.actual != null);
+    $('upSub').textContent = done.length ? `이미 접안한 ${done.length}척: 모델 오차 ${Math.round(done.reduce((p, s) => p + Math.abs(s.actual - s.delay), 0) / done.length * 60)}분, 터미널 예정 ${Math.round(done.reduce((p, s) => p + Math.abs(s.actual), 0) / done.length * 60)}분` : '실제 접안 기록이 아직 없는 배들 (기준 시각을 과거로 돌리면 비교됨)';
+    $('accUp').innerHTML = up.map(s => `<tr><td><b>${esc(s.name)}</b></td><td>${s.terminal} ${esc(s.berth)}</td><td>${s.planned.slice(5)}</td><td class="num">${mins(s.delay) > 0 ? '+' : ''}${mins(s.delay)}분</td><td class="num">${s.actual == null ? '-' : (mins(s.actual) > 0 ? '+' : '') + mins(s.actual) + '분'}</td></tr>`).join('') || '<tr><td colspan="5" class="msg">없음</td></tr>';
+    $('recSub').textContent = rec.length ? `${rec.length}척 · 모델 오차 ${Math.round(rec.reduce((p, s) => p + Math.abs(s.actual - s.delay), 0) / rec.length * 60)}분, 터미널 예정 ${Math.round(rec.reduce((p, s) => p + Math.abs(s.actual), 0) / rec.length * 60)}분 (지금 작업 중인 배 포함)` : '없음';
+    $('accRec').innerHTML = rec.map(s => `<tr><td><b>${esc(s.name)}</b>${s.working ? ' <span class="tag">작업 중</span>' : ''}</td><td>${s.terminal} ${esc(s.berth)}</td><td>${s.planned.slice(5)}</td><td class="num">${Math.abs(mins(s.actual))}분</td><td class="num">${Math.abs(mins(s.actual - s.delay))}분</td></tr>`).join('') || '<tr><td colspan="5" class="msg">없음</td></tr>';
+    J('/v25/lead-accuracy?terminal=' + T).then(r => { const L = (r.data.leads || []); const nm = { '48h': '48시간 전', '24h': '24시간 전', '10h': '반입 마감 (10시간 전)', '6h': '6시간 전', final: '최종 (1시간 전)' };
+      $('accLead').innerHTML = ['48h', '24h', '10h', '6h', 'final'].map(k => L.find(x => x.lead === k)).filter(Boolean).map(x => `<tr><td><b>${nm[x.lead]}</b>${x.plan_known ? '' : ' *'}</td><td class="num">${x.n || '-'}</td><td class="num">${x.mae_h == null ? '-' : mins(x.mae_h) + '분'}</td><td class="num">${pct(x.in30)}</td><td class="num">${pct(x.in60)}</td><td class="num">${x.bias_h == null ? '-' : (mins(x.bias_h) > 0 ? '+' : '') + mins(x.bias_h) + '분'}</td><td class="num">${x.terminal_mae_h == null ? '기록 없음' : mins(x.terminal_mae_h) + '분'}</td><td class="num">${x.terminal_in30 == null ? '—' : pct(x.terminal_in30)}</td></tr>`).join('') || '<tr><td colspan="8" class="msg">계산 결과 없음</td></tr>'; });
+    const days = BD.days.slice(-60), st = d => T === 'ALL' ? d.win : ((d.by_term || {})[T] || {}).win || {};
+    lineChart($('accChart'), [{ color: '#ffa028', values: days.map(d => st(d).full ? st(d).mae * 60 : null) }, { color: '#8a8a8a', dash: true, values: days.map(d => st(d).full ? st(d).term_mae * 60 : null) }], days.map(d => d.iso), days.map((d, i) => st(d).drift ? i : null).filter(x => x != null));
+  }
+  $('term').addEventListener('change', () => BD && renderAcc());
+  $('accRun').addEventListener('click', () => loadAcc($('asOf').value));
+  $('accPast').addEventListener('click', () => { $('asOf').value = local(Date.now() - 48 * 3600e3); loadAcc($('asOf').value); });
+  $('accNow').addEventListener('click', () => { $('asOf').value = local(); loadAcc($('asOf').value); });
+
+  // ---------- Datasets ----------
+  const SRC = { HJNC: 'HJNC 홈페이지 선석배정현황 엑셀', PNIT: 'PNIT 홈페이지 엑셀', HPNT: 'HPNT 홈페이지 엑셀', BNCT: 'BNCT 홈페이지 (7~9월, 자동 수집 금지)', DGT: 'DGT 홈페이지 (8~9월)' };
+  async function loadData() {
+    const [st, b] = await Promise.all([J('/data/status'), J('/v25/board')]);
+    const s = st.data;
+    $('dataSub').textContent = s.exists ? `${s.filename} · 전체 ${s.rows.toLocaleString()}척 (작업 완료 ${s.completed_calls.toLocaleString()}, 예정 ${s.upcoming_calls.toLocaleString()}) · ${s.first_berth.slice(0, 10)} ~ ${s.last_berth.slice(0, 10)}` : '업로드된 파일 없음';
+    if (b.ok) $('dataTable').innerHTML = Object.entries(b.data.terminals).map(([t, v]) => `<tr><td><b>${t}</b></td><td class="num">${v.calls.toLocaleString()}</td><td>${v.first} ~ ${v.last}</td><td>${v.labelable ? '<span class="pill ok">가능</span>' : '<span class="pill gray">척수만</span>'}</td><td class="msg">${SRC[t] || '-'}</td></tr>`).join('');
+    const rf = (await J('/admin/api/datasets/refresh')).data; showRefresh(rf);
+  }
+  function showRefresh(rf) {
+    $('refreshData').disabled = rf.running;
+    $('refMsg').textContent = rf.running ? '받는 중…' : rf.last ? `마지막: ${rf.last.finished_at} · ${rf.last.ok ? '성공' : '실패'}${rf.last.seconds ? ` (${rf.last.seconds}초)` : ''}` : '';
+    if (rf.last) { $('refOut').hidden = false; $('refOut').textContent = rf.last.output; }
+  }
+  $('upload').addEventListener('change', async e => {
+    const f = e.target.files[0]; if (!f) return; const fd = new FormData(); fd.append('file', f);
+    $('upMsg').textContent = `업로드 중… ${f.name}`; const r = await J('/data/upload', { method: 'POST', body: fd }); e.target.value = '';
+    $('upMsg').textContent = r.ok ? `완료: ${r.data.rows.toLocaleString()}행 (${r.data.filename})` : `실패: ${r.data.detail || r.status}`; loadData();
+  });
+  $('refreshData').addEventListener('click', async () => {
+    await J('/admin/api/datasets/refresh', { method: 'POST' });
+    for (let i = 0; i < 200; i++) { const rf = (await J('/admin/api/datasets/refresh')).data; showRefresh(rf); if (!rf.running) break; await new Promise(r => setTimeout(r, 3000)); }
+    loadData();
+  });
+
+  // ---------- System ----------
+  async function loadSys() {
+    const s = (await J('/admin/api/system')).data;
+    const up = s.uptime_s, ut = `${Math.floor(up / 3600)}시간 ${Math.floor(up % 3600 / 60)}분`;
+    $('sysPill').className = 'pill ' + (s.model_loaded && !s.fallback ? 'ok' : 'warn'); $('sysPill').innerHTML = `<span class="dot"></span>${s.model_loaded ? (s.fallback ? 'fallback' : 'ok') : 'model not loaded'}`;
+    $('sysKv').innerHTML = [['모델 로드', s.model_loaded ? '예' : '아니오'], ['서빙 버전', s.serving_version || '-'], ['폴백', s.fallback ? s.fallback_target : '꺼짐'], ['재학습 중', s.retrain_running ? '예' : '아니오'], ['가동 시간', ut], ['데이터 파일', s.data ? `${s.data.file} (${s.data.size_kb}KB, ${s.data.uploaded_at})` : '없음'], ['드리프트 창', `최근 ${s.drift_rule.window_days}일 · ${s.drift_rule.min_ships}척 이상 · 재학습 ${s.drift_rule.retrain_days}일`]].map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+    $('envKv').innerHTML = Object.entries(s.env).concat(Object.entries(s.versions)).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v ?? '-')}</dd>`).join('');
+    $('rulesTable').innerHTML = Object.entries(s.rules).map(([k, v]) => `<tr><td><code>${esc(k)}</code></td><td>${esc(v.value)}</td><td>${v.confirmed ? '<span class="pill ok">확인</span>' : '<span class="pill warn">미확인</span>'}</td></tr>`).join('');
+    const sel = $('logSel'), keep = sel.value; sel.innerHTML = s.logs.map(n => `<option>${esc(n)}</option>`).join(''); sel.value = keep || (s.logs.includes('aiops.log') ? 'aiops.log' : s.logs[0]); showLog();
+  }
+  async function showLog() { const n = $('logSel').value; if (!n) return; const r = await J('/logs/' + encodeURIComponent(n)); const t = (r.data.content || '').split('\n'); $('logView').textContent = t.slice(-300).join('\n'); $('logView').scrollTop = 1e9; }
+  $('logSel').addEventListener('change', showLog);
+
+  loadDash();
+  setInterval(() => { if (TAB === 'dash' && !document.hidden) loadSummary(); }, 30000);
+})();
+</script>
+</body>
+</html>

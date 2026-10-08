@@ -1,0 +1,3092 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="../common/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="../common/js/jquery-ui.min.js"></script>
+
+
+<script language="JavaScript" type="text/javascript" nonce="ojdsjjyoeo">
+	$(document).ready(function() {
+		$('form').each(function() {
+			$(this).append($('<input/>', {type: 'hidden', name: 'CSRF_TOKEN', value:'8dbb886e-20f9-4502-9f47-03b5ae83fc1f' }));
+		})
+	})
+</script>
+ 
+
+
+
+
+
+
+
+<script language="JavaScript" type="Text/JavaScript" nonce="ojdsjjyoeo">
+	var CONTEXT_PATH = "/infoservice";
+</script>
+
+
+
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=1280, initial-scale=1.0, maximum-scale=1.0, user-scalable=1" />
+	<title>에이치엠엠피에스에이신항만 정보서비스</title>
+</head>
+<body>
+
+<div class="tblType_08">
+	<table>
+	<tbody>
+	<tr>
+		<th style="background:#626164; color:#fff;">선석</th>
+		<th style="background:#626164; color:#fff;">선사</th>
+		<th style="background:#626164; color:#fff;">모선항차</th>
+		<th style="background:#626164; color:#fff;">선사항차</th>
+		
+		<th style="background:#626164; color:#fff;">선명</th>
+		<th style="background:#626164; color:#fff;">ROUTE</th>
+		
+		<th style="background:#626164; color:#fff;">반입시작일시</th>
+		
+		<th style="background:#626164; color:#fff;">반입마감시한</th>
+		<th style="background:#626164; color:#fff;">접안(예정)일시</th>
+		<th style="background:#626164; color:#fff;">출항(예정)일시</th>
+		<th style="background:#626164; color:#fff;">양하</th>
+		<th style="background:#626164; color:#fff;">적하</th>
+		<th style="background:#626164; color:#fff;">Shift</th>
+		<th style="background:#626164; color:#fff;">AMP</th>
+		<th style="background:#626164; color:#fff;">상태</th>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSEM001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX636A/UX636A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC EMMA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-26 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-09-29 11:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-29 23:48</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-01 18:00</td>
+		<td align="center" style="background:#f9f9f9;">1526</td>
+		<td align="center" style="background:#f9f9f9;">1343</td>
+		<td align="center" style="background:#f9f9f9;">78</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ORCM001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			198W/198W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MARIA C</td>
+		<td align="center" style="background:#f9f9f9;">AAC</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-27 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-09-30 01:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-30 13:12</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-01 14:00</td>
+		<td align="center" style="background:#f9f9f9;">1059</td>
+		<td align="center" style="background:#f9f9f9;">40</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">YML</td>
+		<td align="center" style="background:#f9f9f9;">
+			YIPT002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0025E/0025E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">YM TIPTOP</td>
+		<td align="center" style="background:#f9f9f9;">EC1E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-28 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-09-30 12:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-01 00:48</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-03 14:00</td>
+		<td align="center" style="background:#f9f9f9;">2399</td>
+		<td align="center" style="background:#f9f9f9;">3511</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">Y</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HLC</td>
+		<td align="center" style="background:#f9f9f9;">
+			YJUX006
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0122S/0122S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">WIDE JULIET</td>
+		<td align="center" style="background:#f9f9f9;">NEAX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-28 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-01 04:06</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-01 16:06</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-03 07:00</td>
+		<td align="center" style="background:#f9f9f9;">869</td>
+		<td align="center" style="background:#f9f9f9;">728</td>
+		<td align="center" style="background:#f9f9f9;">36</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHSH005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0158S/0158S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI SHANGHAI</td>
+		<td align="center" style="background:#f9f9f9;">NEAX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-28 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-01 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-01 20:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-03 05:00</td>
+		<td align="center" style="background:#f9f9f9;">1168</td>
+		<td align="center" style="background:#f9f9f9;">1303</td>
+		<td align="center" style="background:#f9f9f9;">90</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOHL006
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0027E/0027E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM HANUL</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-30 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-02 19:18</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-03 07:18</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-05 01:00</td>
+		<td align="center" style="background:#f9f9f9;">2167</td>
+		<td align="center" style="background:#f9f9f9;">2575</td>
+		<td align="center" style="background:#f9f9f9;">100</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			HTJN001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			1138N/1138N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HT JOURNEY</td>
+		<td align="center" style="background:#f9f9f9;">KRS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-30 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-02 21:18</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-03 09:18</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-04 14:00</td>
+		<td align="center" style="background:#f9f9f9;">562</td>
+		<td align="center" style="background:#f9f9f9;">651</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOTQ007
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0011W/0011W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM TURQUOISE</td>
+		<td align="center" style="background:#f9f9f9;">PS6W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-09-30 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-03 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-03 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-05 06:00</td>
+		<td align="center" style="background:#f9f9f9;">1400</td>
+		<td align="center" style="background:#f9f9f9;">832</td>
+		<td align="center" style="background:#f9f9f9;">556</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			KMSL001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			K2610E/K2610W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">KAPITAN MASLOV</td>
+		<td align="center" style="background:#f9f9f9;">AAC</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-01 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-04 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-04 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-04 23:00</td>
+		<td align="center" style="background:#f9f9f9;">133</td>
+		<td align="center" style="background:#f9f9f9;">6</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MTOR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GY638A/GY638A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">TORRANCE</td>
+		<td align="center" style="background:#f9f9f9;">AAD</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-04 15:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 03:12</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-05 16:00</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">421</td>
+		<td align="center" style="background:#f9f9f9;">62</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MRSM001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY640A/FY640A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ROSA M</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-04 16:12</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 04:12</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-06 10:00</td>
+		<td align="center" style="background:#f9f9f9;">1798</td>
+		<td align="center" style="background:#f9f9f9;">1024</td>
+		<td align="center" style="background:#f9f9f9;">20</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">YML</td>
+		<td align="center" style="background:#f9f9f9;">
+			YTVL002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0028E/0028E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">YM TRAVEL</td>
+		<td align="center" style="background:#f9f9f9;">EC1E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-04 21:48</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 09:48</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-06 23:00</td>
+		<td align="center" style="background:#f9f9f9;">1747</td>
+		<td align="center" style="background:#f9f9f9;">2069</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			JIYU018
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			1088E/1088N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">JI YU</td>
+		<td align="center" style="background:#f9f9f9;">JRX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-05 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 20:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-06 03:00</td>
+		<td align="center" style="background:#f9f9f9;">130</td>
+		<td align="center" style="background:#f9f9f9;">10</td>
+		<td align="center" style="background:#f9f9f9;">4</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOCV003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0004W/0004W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM CLOVER</td>
+		<td align="center" style="background:#f9f9f9;">FIM</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-03 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-05 19:54</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-06 07:54</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-08 12:00</td>
+		<td align="center" style="background:#f9f9f9;">2277</td>
+		<td align="center" style="background:#f9f9f9;">1338</td>
+		<td align="center" style="background:#f9f9f9;">86</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOAQ005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0013E/0013E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM AQUAMARINE</td>
+		<td align="center" style="background:#f9f9f9;">EC1E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-03 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-06 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-06 12:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-08 20:00</td>
+		<td align="center" style="background:#f9f9f9;">1474</td>
+		<td align="center" style="background:#f9f9f9;">3170</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">ARRIVED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHDT002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0147W/0147W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI DYNASTY</td>
+		<td align="center" style="background:#f9f9f9;">FIL</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-04 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-06 14:38</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-07 02:38</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-08 07:00</td>
+		<td align="center" style="background:#f9f9f9;">726</td>
+		<td align="center" style="background:#f9f9f9;">550</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">DEPARTED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			MYGD001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HKK1139S/HHK1139N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MYD GUANGZHOU</td>
+		<td align="center" style="background:#f9f9f9;">KRS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-07 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-08 09:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-09 03:00</td>
+		<td align="center" style="background:#f9f9f9;">450</td>
+		<td align="center" style="background:#f9f9f9;">623</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">ARRIVED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOHM009
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0026S/0026S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM HARMONY</td>
+		<td align="center" style="background:#f9f9f9;">KVX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-08 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-08 14:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-09 08:00</td>
+		<td align="center" style="background:#f9f9f9;">807</td>
+		<td align="center" style="background:#f9f9f9;">301</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">ARRIVED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ORED002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0014W/0014W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE FREEDOM</td>
+		<td align="center" style="background:#f9f9f9;">MS2W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-05 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-08 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-08 22:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-11 00:00</td>
+		<td align="center" style="background:#f9f9f9;">2846</td>
+		<td align="center" style="background:#f9f9f9;">2844</td>
+		<td align="center" style="background:#f9f9f9;">74</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOTP006
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0013W/0013W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM TOPAZ</td>
+		<td align="center" style="background:#f9f9f9;">PS6W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-06 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-08 17:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-09 05:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-10 06:00</td>
+		<td align="center" style="background:#f9f9f9;">978</td>
+		<td align="center" style="background:#f9f9f9;">832</td>
+		<td align="center" style="background:#f9f9f9;">186</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HTMR004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0004S/0004S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MARINA ONE</td>
+		<td align="center" style="background:#f9f9f9;">KIS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-06 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-08 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-09 10:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-10 11:00</td>
+		<td align="center" style="background:#f9f9f9;">1033</td>
+		<td align="center" style="background:#f9f9f9;">396</td>
+		<td align="center" style="background:#f9f9f9;">2</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">YML</td>
+		<td align="center" style="background:#f9f9f9;">
+			YMMD001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0085W/0085W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">YM MODERATION</td>
+		<td align="center" style="background:#f9f9f9;">SX2</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-07 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-09 20:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-10 08:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-11 08:00</td>
+		<td align="center" style="background:#f9f9f9;">1170</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MILL001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			GY639A/GY639A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ILLINOIS VII</td>
+		<td align="center" style="background:#f9f9f9;">AAD</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-07 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-10 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-10 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-11 08:00</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HODM008
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0012E/0012E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM DIAMOND</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-08 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-10 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-11 02:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-12 19:00</td>
+		<td align="center" style="background:#f9f9f9;">1540</td>
+		<td align="center" style="background:#f9f9f9;">2384</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSTR001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY641A/FY641A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC TARANTO</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-08 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-10 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-11 10:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-12 10:00</td>
+		<td align="center" style="background:#f9f9f9;">2224</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MFLW001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			QA638A/QA638A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC FELIXSTOWE</td>
+		<td align="center" style="background:#f9f9f9;">AAD</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-09 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-12 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-12 12:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-13 04:00</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">YML</td>
+		<td align="center" style="background:#f9f9f9;">
+			YTRS004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			105W/105W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">YM TRUST</td>
+		<td align="center" style="background:#f9f9f9;">AAD</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-09 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-12 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-12 12:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-13 04:00</td>
+		<td align="center" style="background:#f9f9f9;">373</td>
+		<td align="center" style="background:#f9f9f9;">70</td>
+		<td align="center" style="background:#f9f9f9;">442</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOOP005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0012E/0012E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM OPAL</td>
+		<td align="center" style="background:#f9f9f9;">MS2E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-09 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-12 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-12 21:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-14 09:00</td>
+		<td align="center" style="background:#f9f9f9;">929</td>
+		<td align="center" style="background:#f9f9f9;">1800</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNAH001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX638A/UX638A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NATASHA XIII</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-10 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-12 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-13 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-14 09:00</td>
+		<td align="center" style="background:#f9f9f9;">892</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MMED001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY642A/FY642A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MELATILDE</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-11 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-13 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-14 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-15 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OHPP002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0048E/0048E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI PLUTO</td>
+		<td align="center" style="background:#f9f9f9;">EC1E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-11 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-13 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-14 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-15 23:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			MYGD002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HKK1140S/HKK1140N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MYD GUANGZHOU</td>
+		<td align="center" style="background:#f9f9f9;">KRS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-12 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-14 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-16 00:00</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOMI003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0022W/0022W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM MIR</td>
+		<td align="center" style="background:#f9f9f9;">PS6W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-12 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-14 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 09:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-16 09:00</td>
+		<td align="center" style="background:#f9f9f9;">1400</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MDNT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX637A/UX637A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DANIT</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-12 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-15 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 23:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-17 04:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOMT002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0028S/0028S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM MASTER</td>
+		<td align="center" style="background:#f9f9f9;">KVX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-13 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-15 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-16 04:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-16 19:00</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HORA006
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0026E/0026E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM RAON</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-13 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-15 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-16 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-18 03:00</td>
+		<td align="center" style="background:#f9f9f9;">1400</td>
+		<td align="center" style="background:#f9f9f9;">2000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			SOLA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK639A/UK639A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SOLA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-14 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-16 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-17 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-18 05:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOXM001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0081W/0081W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE MAXIM</td>
+		<td align="center" style="background:#f9f9f9;">SX2</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-14 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-16 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-17 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-18 09:48</td>
+		<td align="center" style="background:#f9f9f9;">1169</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHFA003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0120W/0120W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI FAITH</td>
+		<td align="center" style="background:#f9f9f9;">FIL</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-14 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-16 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-17 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-18 14:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ORTY001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0002E/0002E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE SOLIDARITY</td>
+		<td align="center" style="background:#f9f9f9;">MS2E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-14 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-16 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-17 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-18 16:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1600</td>
+		<td align="center" style="background:#f9f9f9;">100</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLRZ001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX639A/UX639A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LORENZA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-17 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-19 04:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ONJO001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			105W/105W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">NYK JOANNA</td>
+		<td align="center" style="background:#f9f9f9;">AAD</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-18 00:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 12:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-19 09:00</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			JIYU019
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			1089E/1089N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">JI YU</td>
+		<td align="center" style="background:#f9f9f9;">JRX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-18 05:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 17:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-19 09:00</td>
+		<td align="center" style="background:#f9f9f9;">100</td>
+		<td align="center" style="background:#f9f9f9;">200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOPL005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0013W/0013W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM PEARL</td>
+		<td align="center" style="background:#f9f9f9;">MS2W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-15 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-18 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 23:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-21 00:00</td>
+		<td align="center" style="background:#f9f9f9;">3052</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HODA004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0023E/0023E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM DAON</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-16 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-19 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-19 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-21 08:00</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OOMF001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0087W/0087W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE MAGNIFICENCE</td>
+		<td align="center" style="background:#f9f9f9;">SX2</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-16 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-19 02:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-19 14:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-20 17:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOGE002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0005W/0005W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM GREEN</td>
+		<td align="center" style="background:#f9f9f9;">FIM</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-16 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-19 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-19 22:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-21 02:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHHV010
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0016S/0016S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM HARVEST</td>
+		<td align="center" style="background:#f9f9f9;">KIS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-17 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-19 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-20 00:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-20 20:00</td>
+		<td align="center" style="background:#f9f9f9;">600</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MYKT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK640A/UK640A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC YUKTA X</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-17 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-20 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-20 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-21 12:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">FES</td>
+		<td align="center" style="background:#f9f9f9;">
+			MYGD003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			HKK1141S/HKK1141N
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MYD GUANGZHOU</td>
+		<td align="center" style="background:#f9f9f9;">KRS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-20 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-21 23:00</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">EMC</td>
+		<td align="center" style="background:#f9f9f9;">
+			SMRT004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0145S/0145S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">EVER SMART</td>
+		<td align="center" style="background:#f9f9f9;">NEAX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-20 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-22 15:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOGO003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0024E/0024E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM GAON</td>
+		<td align="center" style="background:#f9f9f9;">MS2E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-21 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 22:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-23 11:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1600</td>
+		<td align="center" style="background:#f9f9f9;">100</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OBRN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0028S/0028S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">BRIGHTON</td>
+		<td align="center" style="background:#f9f9f9;">NEAX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-18 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-21 11:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 23:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-23 07:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOAT004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0012E/0012E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM AMETHYST</td>
+		<td align="center" style="background:#f9f9f9;">EC1E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-19 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-21 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-22 01:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-23 15:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HTZE004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0004S/0004S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEABREEZE</td>
+		<td align="center" style="background:#f9f9f9;">KIS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-20 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-23 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-23 21:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-24 17:00</td>
+		<td align="center" style="background:#f9f9f9;">600</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOHM010
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0027S/0027S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM HARMONY</td>
+		<td align="center" style="background:#f9f9f9;">KVX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 06:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-24 18:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-25 09:00</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOEM007
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0015W/0015W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM EMERALD</td>
+		<td align="center" style="background:#f9f9f9;">PS6W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-24 21:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 11:00</td>
+		<td align="center" style="background:#f9f9f9;">1400</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOTQ008
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0012E/0012E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM TURQUOISE</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-21 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 10:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-24 22:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 17:00</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSVO001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY643A/FY643A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC SAVONA</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-22 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 12:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 00:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 00:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOJD002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0002W/0002W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM JADE</td>
+		<td align="center" style="background:#f9f9f9;">FIM</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-22 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 04:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 06:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVLS001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK641A/UK641A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LISBON</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-22 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 06:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HTWE003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0103W/0103W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">SEASPAN BELLWETHER</td>
+		<td align="center" style="background:#f9f9f9;">FIM</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-22 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-24 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 10:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 19:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHPE005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0107W/0107W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM PREMIUM</td>
+		<td align="center" style="background:#f9f9f9;">FIL</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-22 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-25 07:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 19:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-26 22:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ORGH001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			009W/009W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">GREENHOUSE</td>
+		<td align="center" style="background:#f9f9f9;">SX2</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-23 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-26 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-26 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-27 16:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HTMR005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0005S/0005S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MARINA ONE</td>
+		<td align="center" style="background:#f9f9f9;">KIS</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-27 13:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-28 01:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-28 21:00</td>
+		<td align="center" style="background:#f9f9f9;">600</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OTUQ002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			2637S/2637S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">NAVIOS TURQUOISE</td>
+		<td align="center" style="background:#f9f9f9;">NEAX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-25 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-27 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-28 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-29 19:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MDES001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK642A/UK642A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DESIREE</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-26 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-28 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-29 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-30 06:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MIDN001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX641A/UX641A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC IDANIA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-26 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-29 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-29 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-30 11:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			DARI001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX642A/UX642A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC DARIA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-26 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-29 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-29 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-30 21:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOTP007
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0014E/0014E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM TOPAZ</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-27 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-29 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-30 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-01 02:00</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			ORWT002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0011E/0011E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">ONE FORWARD</td>
+		<td align="center" style="background:#f9f9f9;">MS2E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-27 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-29 22:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-30 10:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-31 23:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1600</td>
+		<td align="center" style="background:#f9f9f9;">100</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOMT003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0029S/0029S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM MASTER</td>
+		<td align="center" style="background:#f9f9f9;">KVX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-27 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-30 00:30</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-30 12:30</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-31 03:30</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HHGR005
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0157W/0157W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI GRACE</td>
+		<td align="center" style="background:#f9f9f9;">FIL</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-27 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-30 08:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-30 20:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-10-31 23:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOBD003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0021W/0021W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM HANBADA</td>
+		<td align="center" style="background:#f9f9f9;">MS2W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-28 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-30 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-31 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-02 08:00</td>
+		<td align="center" style="background:#f9f9f9;">2700</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOHL007
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0027W/0027W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM HANUL</td>
+		<td align="center" style="background:#f9f9f9;">PS6W</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-28 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-30 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-31 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-01 17:00</td>
+		<td align="center" style="background:#f9f9f9;">1400</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">400</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOJU004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0005W/0005W
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM JUNIPER</td>
+		<td align="center" style="background:#f9f9f9;">FIL</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-29 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-10-31 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-01 02:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-02 05:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">500</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MIYA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY644A/FY644A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ALIYA</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-31 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-02 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-03 02:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-04 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">ONE</td>
+		<td align="center" style="background:#f9f9f9;">
+			OHMN002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0056E/0056E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HYUNDAI MARS</td>
+		<td align="center" style="background:#f9f9f9;">EC1E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-10-31 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-02 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-03 09:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-04 23:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T1(S)</td>
+		<td align="center" style="background:#f9f9f9;">EMC</td>
+		<td align="center" style="background:#f9f9f9;">
+			SUPB003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0117S/0117S
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">EVER SUPERB</td>
+		<td align="center" style="background:#f9f9f9;">NEAX</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-01 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-03 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-04 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-05 15:00</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MEXA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK643A/UK643A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">EXPRESS ATHENS</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-04 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-05 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-06 06:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">HMM</td>
+		<td align="center" style="background:#f9f9f9;">
+			HOMI004
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			0023E/0023E
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">HMM MIR</td>
+		<td align="center" style="background:#f9f9f9;">PS6E</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-04 21:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-05 09:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-07 04:00</td>
+		<td align="center" style="background:#f9f9f9;">1500</td>
+		<td align="center" style="background:#f9f9f9;">2300</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MVCT001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX643A/UX643A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC VICTORIA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-02 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-05 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-05 15:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-06 13:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">486</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSAU001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX644A/UX644A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AURIGA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-06 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-09 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-09 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-10 16:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">486</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MBAI001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY645A/FY645A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC BARI</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-07 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-09 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-10 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-12 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSPN003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK644A/UK644A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC PINA</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-09 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-11 19:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-12 07:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-13 07:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MAAY002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX645A/UX645A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC AAYA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-11 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-14 09:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-14 21:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-15 19:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">486</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MERI002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY646A/FY646A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ERICA</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-12 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-14 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-15 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-17 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MEXR003
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK645A/UK645A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">EXPRESS ROME</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-16 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-18 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-19 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-20 06:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MGCE002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX646A/UX646A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC GRACE</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-17 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-19 15:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-20 03:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-21 01:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MELO001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY647A/FY647A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ELOANE</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-20 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-22 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-23 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-24 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MPER002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX647A/UX647A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC PERLE</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-25 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-27 23:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-28 11:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-29 09:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLON001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY648A/FY648A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LONDON</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-26 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-28 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-29 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-11-30 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MEXA001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UK634A/UK634A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">EXPRESS ATHENS</td>
+		<td align="center" style="background:#f9f9f9;">CHINKE</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-28 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-11-30 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-01 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-02 08:00</td>
+		<td align="center" style="background:#f9f9f9;">800</td>
+		<td align="center" style="background:#f9f9f9;">1200</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MMJM001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY649A/FY649A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC MIRJAM</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-11-29 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-01 18:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-02 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-03 06:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MQUI002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX648A/UX648A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC QUITTERIE</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-04 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-06 16:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-07 04:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-08 02:00</td>
+		<td align="center" style="background:#f9f9f9;">1971</td>
+		<td align="center" style="background:#f9f9f9;">1607</td>
+		<td align="center" style="background:#f9f9f9;">18</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T3(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSCA001
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY650A/FY650A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC CLARA</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-06 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-09 04:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-09 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-11 16:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MILA002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX649A/UX649A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC ILARIA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-10 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-13 01:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-13 13:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-14 11:00</td>
+		<td align="center" style="background:#f9f9f9;">1776</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">120</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MLPZ002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			FY651A/FY651A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC LA SPEZIA</td>
+		<td align="center" style="background:#f9f9f9;">AFRICA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-13 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-16 07:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-16 19:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-18 20:00</td>
+		<td align="center" style="background:#f9f9f9;">2500</td>
+		<td align="center" style="background:#f9f9f9;">1000</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MNPO002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX650A/UX650A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC NAPOLI</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-19 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-21 14:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-22 02:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-23 00:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	
+	
+	<tr>
+		<td align="center" style="background:#f9f9f9;">T2(S)</td>
+		<td align="center" style="background:#f9f9f9;">MSC</td>
+		<td align="center" style="background:#f9f9f9;">
+			MSEM002
+		</td>
+		<td align="center" style="background:#f9f9f9;">
+			UX651A/UX651A
+		</td>
+		
+		<td align="center" style="background:#f9f9f9;">MSC EMMA</td>
+		<td align="center" style="background:#f9f9f9;">SANTA</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-24 00:00</td>
+		
+		
+		<!-- HPNT 요청(ETB-12) -->
+		<td align="center" style="background:#f9f9f9;">2026-12-27 03:00</td>
+		
+		<td align="center" style="background:#f9f9f9;">2026-12-27 15:00</td>
+		<td align="center" style="background:#f9f9f9;">2026-12-28 13:00</td>
+		<td align="center" style="background:#f9f9f9;">1100</td>
+		<td align="center" style="background:#f9f9f9;">1900</td>
+		<td align="center" style="background:#f9f9f9;">0</td>
+		<td align="center" style="background:#f9f9f9;">N</td>
+		<td align="center" style="background:#f9f9f9;">PLANNED</td>
+	</tr>
+	
+	</tbody>
+	</table>
+</div>
+
+</body>
+</html>

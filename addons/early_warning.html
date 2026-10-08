@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>부산항 지연 조기경보 v2.6</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* v2.6: 시안 3번(터미널형) 변주 5번 레이아웃 + 1번 색감(검정·앰버). 일정 위·표 아래 왼쪽, 배 상세 오른쪽, 하단 정확도·추이·최근 접안, 손실·절감 */
+.x{--font:"IBM Plex Mono",ui-monospace,Menlo,monospace;--sans:Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;background:var(--bg);color:var(--fg);font:12px/1.45 var(--font);min-height:720px}
+.x .cmd{display:flex;align-items:center;flex-wrap:wrap;background:var(--hd);color:var(--hdf);border-bottom:1px solid var(--ln)}
+.x .cmd .k{background:var(--ac);color:var(--acf);font-weight:700;padding:7px 12px;letter-spacing:.06em}
+.x .cmd .t{padding:7px 14px;font:700 14px/1.2 var(--sans);color:var(--hdf)}
+.x .cmd .m{padding:7px 10px;color:var(--mut);white-space:nowrap}
+.x .cmd .m b{color:var(--hdf);font-weight:600}
+.x .cmd .adm{margin-left:auto;padding:7px 14px;color:var(--ac);text-decoration:none;font-weight:600}
+.x .fk{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--ln);background:var(--pn)}
+.x .fk button{border:1px solid var(--ln);background:var(--bg);color:var(--fg);padding:4px 10px;border-radius:var(--r,2px);font:inherit}
+.x .fk button span{color:var(--ac);margin-right:6px;font-weight:700}
+.x .fk button.on{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.x .fk button.on span{color:var(--acf)}
+.x .sum{margin-left:auto;display:flex;gap:16px;flex-wrap:wrap;color:var(--mut)}
+.x .sum b{color:var(--fg);font-size:13px}
+.x .pn{background:var(--pn);border:1px solid var(--ln);border-radius:var(--r,0);min-width:0;display:flex;flex-direction:column}
+.x .ttl{display:flex;justify-content:space-between;gap:10px;padding:7px 12px;border-bottom:1px solid var(--ln);color:var(--mut);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase}
+.x .ttl b{color:var(--fg);text-transform:none;letter-spacing:0;font-size:12.5px}
+.x .body{padding:10px 12px}
+.x .wrap{display:grid;gap:var(--gap,8px);padding:var(--gap,8px)}
+.x .g0{color:var(--g0)}.x .g1{color:var(--g1)}.x .g2{color:var(--g2)}.x .g3{color:var(--g3)}.x .neg{color:var(--neg,var(--g0))}
+.x table{font-variant-numeric:tabular-nums}
+.x th{text-align:left;font-weight:500;color:var(--mut);font-size:11px;padding:6px 8px;border-bottom:1px solid var(--ln);white-space:nowrap;position:sticky;top:0;background:var(--pn)}
+.x td{padding:6px 8px;border-bottom:1px solid var(--ln2,var(--ln));white-space:nowrap}
+.x td.n,.x th.n{text-align:right}
+.x tbody tr{cursor:pointer}
+.x tbody tr:hover{background:var(--hov)}
+.x tbody tr.sel{background:var(--sel);box-shadow:inset 3px 0 0 var(--ac)}
+.x td .nm{color:var(--strong);font-weight:600}
+.x .tblw{overflow:auto;max-height:var(--tblh,360px)}
+.x .chip{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11px;border:1px solid currentColor}
+/* 상세 */
+.x .det{display:flex;flex-direction:column;gap:12px;padding:12px 14px}
+.x .det h3{font:800 20px/1.15 var(--sans);color:var(--strong);margin:0}
+.x .det .s{color:var(--mut);font-size:12px;margin-top:2px}
+.x .kp4{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--ln);border:1px solid var(--ln)}
+.x .kp4>div{background:var(--pn);padding:8px 10px}
+.x .kp4 label{display:block;color:var(--mut);font-size:11px}
+.x .kp4 b{font-size:17px;color:var(--strong)}
+.x .kp4 b.g1,.x .kp4 b.g2,.x .kp4 b.g3,.x .kp4 b.g0{color:inherit}
+.x .rng{position:relative;height:46px}
+.x .rng .ax{position:absolute;left:0;right:0;top:22px;height:2px;background:var(--ln)}
+.x .rng .band{position:absolute;top:16px;height:14px;background:var(--ac);opacity:.28;border-radius:3px}
+.x .rng .pl{position:absolute;top:10px;width:2px;height:26px;background:var(--mut)}
+.x .rng .pr{position:absolute;top:15px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--ac);border:2px solid var(--pn)}
+.x .rng .lb{position:absolute;top:34px;font-size:10.5px;color:var(--mut);transform:translateX(-50%);white-space:nowrap}
+.x .rng .lt{position:absolute;top:0;font-size:10.5px;color:var(--mut);transform:translateX(-50%);white-space:nowrap}
+.x .cg{display:flex;height:10px;border-radius:2px;overflow:hidden;background:var(--ln)}
+.x .cg i{display:block}
+.x .cgl{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--mut);margin-top:5px}
+.x .cgl i{display:inline-block;width:8px;height:8px;margin-right:4px;border-radius:2px}
+.x .facts{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:12px;margin:0}
+.x .facts dt{color:var(--mut)}.x .facts dd{margin:0;text-align:right;color:var(--fg)}
+.x .adv{border-left:3px solid var(--ac);padding:6px 10px;background:var(--hov);font-size:12px;font-family:var(--sans)}
+.x .adv b{display:block;margin-bottom:2px}
+/* 시간대별 일정 */
+.x .hz{overflow-x:auto;overflow-y:hidden}
+.x .hz svg{display:block}
+.x .hz text{fill:var(--mut);font-family:var(--font)}
+.x .hz .hd{fill:var(--fg);font-weight:600}
+.x .hz .rl{fill:var(--fg);font-weight:600}
+.x .hz .gl{stroke:var(--ln);stroke-width:1}
+.x .hz .gl6{stroke:var(--ln);stroke-width:1.6}
+.x .hz .dayl{stroke:var(--mut);stroke-width:1.5;stroke-dasharray:3 3}
+.x .hz .band{fill:var(--hov)}
+.x .hz .cur{fill:var(--ac);opacity:.1}
+.x .hz .now{stroke:var(--ac);stroke-width:2}
+.x .hz .nowt{fill:var(--ac);font-weight:700}
+.x .hz .hist{fill:var(--ac);opacity:.55}
+.x .hz .histn{fill:var(--fg);font-weight:600}
+.x .hz .bar{stroke:none;cursor:pointer}
+.x .hz .bar.g0{fill:var(--g0)}.x .hz .bar.g1{fill:var(--g1)}.x .hz .bar.g2{fill:var(--g2)}.x .hz .bar.g3{fill:var(--g3)}
+.x .hz .bl{fill:var(--barf,#000);font-weight:600;pointer-events:none}
+.x .hz .ghost{fill:none;stroke:var(--mut);stroke-width:1.2;stroke-dasharray:3 2}
+.x .hz .con{stroke:var(--mut);stroke-width:1}
+.x .hz .rowsel{fill:var(--sel)}
+.x .hz g.sel .bar{stroke:var(--strong);stroke-width:2}
+.x .hz .work{fill:var(--mut);opacity:.35}
+.x .lg{display:flex;flex-wrap:wrap;gap:12px;padding:6px 12px;font-size:11px;color:var(--mut);border-top:1px solid var(--ln)}
+.x .lg i{display:inline-block;width:12px;height:8px;margin-right:4px;vertical-align:middle;border-radius:1px}
+/* 시간칸 보드 */
+.x .hb{display:grid;grid-auto-flow:column;grid-auto-columns:var(--hbw,120px);overflow-x:auto;border-top:1px solid var(--ln)}
+.x .hb .col{border-right:1px solid var(--ln);min-height:230px;display:flex;flex-direction:column}
+.x .hb .col.now{background:var(--hov)}
+.x .hb .ch{padding:6px 8px;border-bottom:1px solid var(--ln);display:flex;justify-content:space-between;color:var(--mut);font-size:11px}
+.x .hb .ch b{color:var(--strong);font-size:13px}
+.x .hb .cc{padding:6px;display:flex;flex-direction:column;gap:5px}
+.x .hb .sc{border:1px solid var(--ln);border-left:4px solid currentColor;border-radius:3px;padding:4px 6px;background:var(--pn);cursor:pointer;font-size:11px;color:var(--fg)}
+.x .hb .sc b{display:block;color:var(--strong);font-size:11.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.x .hb .sc.sel{outline:2px solid var(--ac)}
+.x .hb .sc.g0{border-left-color:var(--g0)}.x .hb .sc.g1{border-left-color:var(--g1)}.x .hb .sc.g2{border-left-color:var(--g2)}.x .hb .sc.g3{border-left-color:var(--g3)}
+/* 행 안 미니 타임라인 */
+.x .mt{position:relative;height:12px;width:220px;background:var(--hov);border-radius:2px}
+.x .mt i{position:absolute;top:2px;height:8px;border-radius:2px}
+.x .mt u{position:absolute;top:-1px;width:1px;height:14px;background:var(--mut);text-decoration:none}
+.x .mt s{position:absolute;top:-1px;width:2px;height:14px;background:var(--ac)}
+/* 하단 */
+.x .acc{display:grid;grid-template-columns:auto 1fr auto;gap:6px 10px;align-items:center;font-size:12px}
+.x .acc .bar2{position:relative;height:9px;background:var(--hov);border-radius:2px}
+.x .acc .bar2 i{position:absolute;left:0;top:0;bottom:0;background:var(--mut);opacity:.6}
+.x .acc .bar2 b{position:absolute;left:0;top:2px;height:5px;background:var(--ac)}
+.x .imp2{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.x .imp2>div{border:1px dashed var(--ln);padding:8px 10px}
+.x .imp2 label{display:block;color:var(--mut);font-size:11px}
+.x .imp2 b{font-size:15px;color:var(--strong)}
+.x .as{font-size:10.5px;border:1px solid var(--g1);color:var(--g1);padding:0 6px;border-radius:999px;margin-left:6px}
+.x .sp .m{stroke:var(--ac);stroke-width:2;fill:none}.x .sp .t{stroke:var(--mut);stroke-width:1.5;stroke-dasharray:4 3;fill:none}
+.x .sp text{fill:var(--mut);font-size:10px}.x .sp .ax{stroke:var(--ln)}
+.x .rc td,.x .rc th{padding:4px 6px}
+/* 레이아웃 */
+.x .L-right{grid-template-columns:minmax(0,1fr) 360px;align-items:start}
+.x .L-left{grid-template-columns:340px minmax(0,1fr);align-items:start}
+.x .L-three{grid-template-columns:300px minmax(0,1fr) 330px;align-items:start}
+.x .side{position:sticky;top:60px}
+.x .b3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap,8px)}
+@media (max-width:1100px){.x .L-right,.x .L-left,.x .L-three{grid-template-columns:1fr}.x .side{position:static}.x .b3{grid-template-columns:1fr}}
+
+
+.x1{--bg:#000;--pn:#0b0b0b;--hd:#141414;--hdf:#f2f2f2;--ln:#262626;--fg:#d9d9d9;--mut:#a6a6a6;--strong:#fff;--ac:#ffa028;--acf:#000;--hov:#161616;--sel:#2a1d08;--g0:#4ee06a;--g1:#ffd23f;--g2:#ff8a2a;--g3:#ff4040;--barf:#000}
+
+/* v2.6 페이지 */
+html,body{margin:0;background:#000;color:#d9d9d9}
+*{box-sizing:border-box}
+button{cursor:pointer}
+table{border-collapse:collapse;width:100%}
+.na{opacity:.55}
+#app{min-height:100vh}
+.x .wrap{display:flex;flex-direction:column;gap:8px;padding:8px}
+.x .main{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:8px;align-items:stretch}
+.x .col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.x .grow{flex:1}
+.x .grow .tblw{max-height:440px}
+.x .side{height:0;min-height:100%;position:static}
+.x .side .det{flex:1;overflow-y:auto}
+.x .b3{display:grid;grid-template-columns:1.1fr 1fr 1.2fr;gap:8px}
+.x .b3 .pn>.body,.x .b3 .pn>.tblw{flex:1}
+.x .cap{color:var(--mut);font-size:11px;margin-bottom:4px;display:block}
+.x .two{display:flex;gap:22px;margin-bottom:10px}
+.x .two span{display:block;color:var(--mut);font-size:11px}
+.x .two b{font-size:20px;color:var(--strong)}
+.x .imp2{grid-template-columns:repeat(4,1fr)}
+.x .imp2 small{font-size:11px;color:var(--mut);font-weight:400}
+.x .imgrid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;margin-top:12px}
+.x .imgrid .adv{margin-bottom:6px}
+.x .det .adv{margin-top:2px}
+.x .hz svg{font-size:11px}
+.x tbody tr.sel td .nm{color:var(--ac)}
+@media (max-width:1100px){.x .main{grid-template-columns:1fr}.x .side{height:auto;min-height:0}.x .b3,.x .imgrid{grid-template-columns:1fr}.x .imp2{grid-template-columns:1fr 1fr}}
+/* 스크롤바 통일 (앰버) */
+*{scrollbar-width:thin;scrollbar-color:#5c3d10 #0b0b0b}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-track{background:#0b0b0b}
+::-webkit-scrollbar-thumb{background:#4a3210;border-radius:5px;border:2px solid #0b0b0b}
+::-webkit-scrollbar-thumb:hover{background:#ffa028}
+::-webkit-scrollbar-corner{background:#0b0b0b}
+
+
+/* 알약 모양 제거 */
+.x .as{border:0;padding:0;margin-left:6px;border-radius:0;color:var(--mut);font-size:10.5px}
+.x .as::before{content:"("}.x .as::after{content:")"}
+.x .chip{border:0;padding:0;border-radius:0}
+.x .fk button{border-radius:0}
+.x .pn{border-radius:0}
+.x .rng .pr{border-radius:0;width:12px;height:12px;margin-left:-6px;top:17px;transform:rotate(45deg)}
+.x .rng .band{border-radius:0}
+.x .cg,.x .mt,.x .mt i,.x .acc .bar2,.x .cgl i,.x .lg i{border-radius:0}
+
+.x table.lead td,.x table.lead th{padding:4px 6px}
+
+/* 가독성 한 단계 (관제 톤 유지, 크기·대비만) */
+.x{font-size:13.5px}
+.x .cmd .t{font-size:16px}.x .cmd .m{font-size:13px}
+.x .fk button{font-size:13px;padding:5px 12px}.x .sum{font-size:13px}.x .sum b{font-size:15px}
+.x .ttl{font-size:12.5px;font-weight:500}.x .ttl b{font-size:13.5px}
+.x th{font-size:12.5px;font-weight:600}.x td{font-size:13.5px;padding:7px 9px}
+.x .cap,.x .lg,.x .cgl,.x .chip,.x .rc td,.x .rc th,.x .as{font-size:12.5px}
+.x .hz svg{font-size:12.5px}
+.x .det h3{font-size:23px}.x .det .s{font-size:13px}
+.x .kp4 label{font-size:12.5px;font-weight:500}.x .kp4 b{font-size:20px}
+.x .facts{font-size:13.5px}.x .adv{font-size:13.5px}
+.x .rng .lb,.x .rng .lt{font-size:12px}
+.x .two span{font-size:12.5px;font-weight:500}.x .two b{font-size:23px}
+.x .acc{font-size:13px}.x .imp2 label{font-size:12.5px;font-weight:500}.x .imp2 b{font-size:18px}
+.x .sp text{font-size:12px}
+.x table.lead td,.x table.lead th{font-size:12.5px;padding:5px 7px}
+
+/* 터미널 선택 시 다른 터미널 일정은 어둡게 */
+.x .hz g.dim{opacity:.18;transition:opacity .15s}
+.x .hz g.dim:hover{opacity:.5}
+.x .hz .rowoff{fill:#000;opacity:.35}
+.x .hz .rl{cursor:pointer}
+.x .hz .rl.dim{fill:var(--mut);opacity:.45;font-weight:400}
+.x .hz .rl:hover{fill:var(--ac)}
+@media (prefers-reduced-motion:reduce){.x .hz g.dim{transition:none}}
+
+/* 선박 상세: 발표용 큰 블록 (손실·권고·절감) + 작은 상세 */
+.x .big-loss{border:1px solid var(--ac);background:#1a1206;padding:14px 16px}
+.x .big-loss .bl-l{font:600 15px/1.3 var(--sans);color:var(--fg)}
+.x .big-loss .bl-v{font:700 30px/1.2 var(--font);color:var(--ac);margin:4px 0 10px;letter-spacing:0;white-space:nowrap}
+.x .big-loss .bl-v.na{font-size:20px;color:var(--mut)}
+.x .big-loss .bl-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px 12px}
+.x .big-loss .bl-g span{display:block;font-size:13px;color:var(--mut)}
+.x .big-loss .bl-g b{display:block;font-size:15px;color:var(--strong);white-space:nowrap}
+.x .big-loss .bl-n{margin-top:8px;font-size:13px;color:var(--mut)}
+.x .big-act{border:1px solid var(--ln);padding:12px 16px}
+.x .big-act .ba-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;font:600 15px/1.3 var(--sans);margin-bottom:8px}
+.x .big-act .ba-h b{font:700 22px/1.2 var(--font);color:var(--g0);white-space:nowrap;margin-left:6px}
+.x .big-act .ba-i{border-left:3px solid var(--ac);padding:8px 0 8px 12px;margin-top:6px}
+.x .big-act .ba-i.ref{border-left-color:var(--mut)}
+.x .big-act .ba-w{font:600 14px/1.3 var(--sans);color:var(--strong)}
+.x .big-act .ba-t{font:400 15px/1.5 var(--sans);color:var(--fg);margin-top:2px}
+.x .big-act .ba-s{font:700 15px/1.3 var(--font);color:var(--g0);margin-top:4px;white-space:nowrap}
+.x .small-det{border-top:1px dashed var(--ln);padding-top:10px;display:flex;flex-direction:column;gap:10px;opacity:.9}
+.x .small-det .sd-h{font-size:12px;color:var(--mut);letter-spacing:.06em}
+.x .small-det .facts,.x .small-det .facts dt,.x .small-det .facts dd{font-size:12.5px}
+
+/* 같은 선석 겹침 강조 */
+.x .hz .bar.ov{stroke:var(--ac);stroke-width:2}
+.x .hz .ovz{fill:url(#ovhatch)}
+.x .hz .rowov{fill:var(--ac);fill-opacity:.12}
+.x .hz .rowovl{fill:var(--ac)}
+.x .hz .rowov.dimz,.x .hz .rowovl.dimz{opacity:.25}
+.x .ovl{display:grid;grid-template-columns:auto auto 1fr auto auto;gap:2px 14px;padding:6px 10px;border-bottom:1px solid var(--ln);max-height:96px;overflow-y:auto;font-size:12.5px;align-items:baseline}
+.x .ovl .k{color:var(--ac);font-weight:700}
+.x .ovl .n{color:var(--strong)}
+.x .ovl .h{color:var(--ac);font-weight:700;text-align:right}
+.x .ovl .w{color:var(--mut)}
+.x .ovl .dim{opacity:.35}
+.x .ovl .hd0{color:var(--mut);grid-column:1/-1}
+.x .hz .ovz.dimz{opacity:.18}
+.x .hz text.dimt{opacity:.25}
+.x .hz .ovframe{fill:none;stroke:var(--ac);stroke-width:2;pointer-events:all}
+.x .hz .ovt{fill:var(--ac);font-weight:700;font-size:12px;paint-order:stroke;stroke:#0b0b0b;stroke-width:4px;pointer-events:none}
+.x .hz g.ovg.dim{opacity:.18}
+
+.x .sorts{display:inline-flex;gap:4px;align-items:center;text-transform:none;letter-spacing:0}
+.x .sorts button{border:1px solid var(--ln);background:var(--bg);color:var(--mut);padding:1px 8px;font:inherit;border-radius:0;cursor:pointer}
+.x .sorts button.on{border-color:var(--ac);color:var(--ac)}
+</style>
+</head>
+<body>
+<div id="app" class="x x1"><div class="cmd"><span class="k">BERTH</span><span class="t">부산항 지연 조기경보 · 신항</span><span class="m">불러오는 중…</span></div></div>
+<script>
+
+"use strict";
+// v2.6 사용자 화면: 시안 3-5번 레이아웃 + 1번 색감(검정·앰버). 실데이터 API 연결
+//   /v25/board (예측·최근 접안·정확도·일별 오차), /predict/next-day (80% 범위·작업시간·반입 마감·다음 항구), /v25/impact (손실·절감)
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P=s=>{const[a,b]=s.split(' ');const[Y,M,Dd]=a.split('-').map(Number);const[h,m]=(b||'00:00').split(':').map(Number);return new Date(Y,M-1,Dd,h,m)};
+let T0=new Date(),D0=new Date(),HZ=48,D=null,startH=0;
+const hrs=s=>(P(s)-T0)/36e5;
+const mn=h=>Math.round(h*60);
+const sg=h=>{const m=mn(h);return(m>0?'+':m<0?'−':'±')+Math.abs(m)};
+const sgm=h=>sg(h)+'분';
+const dayLbl=s=>{const p=P(s);const d=Math.round((new Date(p.getFullYear(),p.getMonth(),p.getDate())-D0)/864e5);return({'-1':'어제','0':'오늘','1':'내일','2':'모레'})[d]||s.slice(5,10)};
+const fdt=s=>s?dayLbl(s)+' '+s.slice(11,16):'—';
+const ftm=s=>s?s.slice(11,16):'—';
+const GRN=['정상','주의','지연','경고'];
+let GR=[0.5,1,2];
+const gk=h=>{const a=Math.abs(h);return a>=GR[2]?3:a>=GR[1]?2:a>=GR[0]?1:0};
+const NA='<span class="na">정보 없음</span>';
+const nz=v=>v==null||v===''?NA:esc(v);
+const num=v=>v==null?NA:Number(v).toLocaleString('ko-KR');
+const pct=x=>x==null?'-':Math.round(x*100);
+const won=v=>v==null?'—':v>=1e8?(v/1e8).toFixed(1).replace(/\.0$/,'')+'억 원':Math.round(v/1e4).toLocaleString('ko-KR')+'만 원';
+const TERMS=['ALL','HJNC','PNIT','BNCT'];
+const TNAME={ALL:'신항 전체',HJNC:'HJNC',PNIT:'PNIT',BNCT:'BNCT'};
+const ST={term:'ALL',sel:null,sort:'arr'};  // sort: arr 입항 순(기본) | loss 손실액 순 | delay 지연 순
+const ADV=[['계획대로 진행','선석·작업조 계획 그대로. 트럭 반입 예약 유지.'],['앞뒤 여유 확인','같은 선석 앞뒤 배의 간격(최소 2시간)과 작업조 대기 시간을 다시 본다.'],['재배치 검토','작업조 투입 시각을 늦추고 같은 시간대 다른 선석 여유를 확인한다.'],['선사·운송사 알림','접안 지연 안내, 반입 시간대 재조정, 예선(24시간 전)·도선(3시간 전) 신청 시각 변경.']];
+
+async function J(p){const r=await fetch(p);if(!r.ok)throw new Error(p+' '+r.status);return r.json()}
+async function load(){
+  const LA=await Promise.all(['ALL','HJNC','PNIT','BNCT'].map(t=>J('/v25/lead-accuracy?terminal='+t).catch(()=>null)));
+  const [b,nd,im,ai]=await Promise.all([J('/v25/board?horizon_h=48'),J('/predict/next-day?horizon_h=48').catch(()=>({vessels:[]})),J('/v25/impact?horizon_h=48').catch(()=>null),J('/v25/ais-eta?horizon_h=48').catch(()=>null)]);
+  T0=P(b.as_of);D0=new Date(T0.getFullYear(),T0.getMonth(),T0.getDate());HZ=b.horizon_h||48;startH=-(T0.getMinutes()/60);GR=b.grades_h||GR;
+  const ndm=Object.fromEntries((nd.vessels||[]).map(v=>[v.call_id,v]));
+  const imm=Object.fromEntries(((im&&im.vessels)||[]).map(v=>[v.call_id,v]));
+  const aim=Object.fromEntries(((ai&&ai.vessels)||[]).map(v=>[v.call,v]));
+  const ships=b.upcoming.map(s=>{const n=ndm[s.call]||{},m=imm[s.call]||{};const o={id:s.call,t:s.terminal,name:s.name,line:s.line,route:s.route,berth:s.berth,planned:s.planned,predicted:s.predicted,d:s.delay,box:s.box,unload:s.unload,load:s.load,shift:s.shift,gt:s.gt,flag:s.flag,type:s.type,up:s.up,tugs:s.tugs,pilot:s.pilot,
+    p80:n.predicted_berth_80||null,work:n.predicted_work_h||null,dep:n.predicted_departure||null,depPlan:n.terminal_planned_departure||null,cutoff:n.cargo_cutoff||null,next:n.next_port||null,
+    cls:m.vessel_class||null,cph:m.carrier_krw_per_h||null,loss:m.carrier_loss_krw??null,lossd:m.loss_krw||null,queue:m.queue_wait_h??null,bdelay:m.berth_delay_h??null,wdelay:m.work_delay_h??null,trans:m.transship_est??null,acts:m.actions||[]};
+    // AIS 반영: 가중치 w>0 이면 화면의 예측 접안을 앙상블 값으로 (모델 A 값은 따로 보관)
+    const a=aim[s.call];o.modelA=s.predicted;o.modelAd=s.delay;o.w=a?a.w||0:0;o.ais=a?a.ais:null;o.reason=a?a.reason:null;
+    if(a&&a.w>0&&a.ensemble){o.predicted=a.ensemble;o.d=a.ensemble_delay_h??o.d}
+    return o});
+  ships.forEach(s=>{s.h=hrs(s.predicted);s.hp=hrs(s.planned);s.g=gk(s.d)});
+  ships.sort((a,b)=>a.h-b.h);
+  const last=b.days.length?b.days[b.days.length-1]:null;
+  D={as_of:b.as_of,model:b.model_version,ships,recent:b.recent,terminals:b.terminals,days:b.days.slice(-30),last,win:last?last.win:{},
+     wdays:b.window_days||14,minShips:b.window||15,impact:im,file:b.file,
+     lead:Object.fromEntries(['ALL','HJNC','PNIT','BNCT'].map((t,i)=>[t,LA[i]])),
+     ais:ai?{on:!!ai.ais_available,used:ai.used_n||0,matched:ai.matched_n||0,total:ai.total_n||0,last:ai.last_fix_utc||null,note:ai.weight_note||''}:null};
+}
+function view(){
+  const ships=D.ships.filter(s=>ST.term==='ALL'||s.t===ST.term).slice();
+  if(ST.sort==='loss')ships.sort((a,b)=>(b.loss??-1)-(a.loss??-1)||a.h-b.h);
+  else if(ST.sort==='delay')ships.sort((a,b)=>b.d-a.d||a.h-b.h);
+  else ships.sort((a,b)=>a.h-b.h);
+  const n=ships.length,avg=n?ships.reduce((a,s)=>a+s.d,0)/n:null,over=ships.filter(s=>Math.abs(s.d)>=GR[0]).length;
+  const max=n?ships.reduce((a,s)=>Math.abs(s.d)>Math.abs(a.d)?s:a):null;
+  let sel=ships.find(s=>s.id===ST.sel)||ships[0]||null;  // 기본 선택 = 지금 정렬의 1번
+  const recent=D.recent.filter(s=>ST.term==='ALL'||s.terminal===ST.term);
+  const win=ST.term==='ALL'?D.win:((D.last&&D.last.by_term&&D.last.by_term[ST.term])||{}).win||{};
+  return{ships,n,avg,over,max,sel,recent,box:ships.reduce((a,s)=>a+s.box,0),win};
+}
+const pnl=(title,right,inner,cls='')=>`<div class="pn ${cls}"><div class="ttl"><span>${title}</span><span>${right||''}</span></div>${inner}</div>`;
+const empty=()=>`<p class="na" style="padding:14px 12px">${TNAME[ST.term]} ${HZ}시간 안에 접안 예정 배가 없습니다</p>`;
+function topbar(v){
+  return `<div class="cmd"><span class="k">BERTH</span><span class="t">부산항 지연 조기경보 · 신항</span><span class="m">기준 <b>${D.as_of}</b></span><span class="m">모델 <b>${esc(D.model)}</b></span><span class="m">범위 <b>${HZ}h</b></span><span class="m" title="${esc(D.ais&&D.ais.note||'')}">AIS <b class="${D.ais&&D.ais.used?'g0':''}">${!D.ais?'—':!D.ais.on?'수집 전':D.ais.used+'/'+D.ais.total+'척 반영'}</b></span><a class="adm" href="/admin">관리자 콘솔 ↗</a></div>
+<div class="fk">${TERMS.map((t,i)=>`<button data-act="term" data-t="${t}" class="${ST.term===t?'on':''}"><span>F${i+1}</span>${TNAME[t]}</button>`).join('')}<div class="sum"><span>접안 예정 <b>${v.n}</b>척</span><span>평균 지연 <b>${v.avg==null?'—':sg(v.avg)}</b>분</span><span>30분 이상 <b class="${v.over?'g2':'g0'}">${v.over}</b>척</span><span>최대 <b>${v.max?esc(v.max.name)+' '+sgm(v.max.d):'—'}</b></span><span>물량 <b>${num(v.box)}</b> box</span></div></div>`;
+}
+function sortBtns(){
+  return `<span class="sorts">정렬 ${[['arr','입항 순'],['loss','손실액 순'],['delay','지연 순']].map(([k,t])=>`<button data-act="sort" data-k="${k}" class="${ST.sort===k?'on':''}">${t}</button>`).join('')}</span>`;
+}
+function tbl(v){
+  if(!v.n)return empty();
+  return `<div class="tblw"><table><thead><tr><th>#</th><th>배</th><th>선사</th><th>터미널</th><th>선석</th><th>터미널 예정</th><th>예측 접안</th><th class="n">지연</th><th>등급</th><th class="n">예상 손실</th><th class="n">box</th><th class="n">총톤수</th><th class="n">예선</th></tr></thead><tbody>${v.ships.map((s,i)=>`<tr data-act="sel" data-id="${esc(s.id)}" class="${v.sel===s?'sel':''}"><td style="color:var(--mut)">${String(i+1).padStart(2,'0')}</td><td><span class="nm">${esc(s.name)}</span>${s.w>0?'<span class="as">AIS</span>':''}</td><td>${esc(s.line)}</td><td>${s.t}</td><td>${esc(s.berth)}</td><td>${fdt(s.planned)}</td><td>${ftm(s.predicted)}</td><td class="n ${s.d<0&&s.g===0?'neg':'g'+s.g}"><b>${sg(s.d)}</b>분</td><td class="g${s.g}">${GRN[s.g]}</td><td class="n">${s.loss==null?'—':won(s.loss)}</td><td class="n">${num(s.box)}</td><td class="n">${s.gt==null?'—':num(s.gt)}</td><td class="n">${s.tugs??'—'}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function relH(s,hm){const p=P(s.planned),c=new Date(p);const[h,m]=hm.split(':').map(Number);c.setHours(h,m,0,0);let d=(c-p)/36e5;if(d>12)d-=24;if(d<-12)d+=24;return d}
+const LH={};
+function leadHist(s){
+  const h=LH[s.id];
+  if(!h){J('/v25/lead-history?call_id='+encodeURIComponent(s.id)).then(r=>{LH[s.id]=r;const el=document.getElementById('lh');if(el&&view().sel===s)el.innerHTML=leadHist(s)}).catch(()=>{LH[s.id]={leads:[]}});return '<p class="cap">불러오는 중…</p>'}
+  if(!h.leads||!h.leads.length)return '<p class="cap">기록 없음</p>';
+  const nm={'48h':'48시간 전','24h':'24시간 전','10h':'반입 마감 (10시간 전)','6h':'6시간 전','final':'최종 (1시간 전)'};
+  const order=['48h','24h','10h','6h','final'];
+  return `<dl class="facts">${order.map(k=>h.leads.find(x=>x.lead===k)).filter(Boolean).map(x=>`<dt>${nm[x.lead]}${x.as_of?' · '+x.as_of.slice(5):''}</dt><dd>${x.status==='계산'?`${ftm(x.predicted_berth)} (${sgm(x.predicted_delay_h)})`:x.status}</dd>`).join('')}${h.actual_berth?`<dt>실제 접안</dt><dd style="color:var(--strong)">${ftm(h.actual_berth)} (${sgm(h.actual_delay_h)})</dd>`:''}</dl>`;
+}
+function aisBlock(s){
+  if(!D.ais||!D.ais.on)return `<p class="cap">AIS 수집 전 · 수집이 시작되면 신항까지 거리와 속력으로 접안 예측을 보정합니다</p>`;
+  if(!s.ais)return `<p class="cap">이 배는 AIS에서 찾지 못했습니다 · 모델 예측 그대로</p>`;
+  const x=s.ais;
+  return `<dl class="facts"><dt>신항까지 거리</dt><dd>${x.dist_nm==null?NA:Math.round(x.dist_nm)+' 해리'}</dd><dt>최근 6시간 평균 속력</dt><dd>${x.sog_6h_kn==null?NA:x.sog_6h_kn.toFixed(1)+' 노트'}</dd><dt>마지막 수신</dt><dd>${x.last_seen_min==null?NA:Math.round(x.last_seen_min)+'분 전'}</dd><dt>위치로 계산한 도착</dt><dd>${x.physics_eta?fdt(x.physics_eta):NA}</dd><dt>선원 입력 도착</dt><dd>${x.declared_eta?fdt(x.declared_eta):NA}</dd><dt>모델 예측 (AIS 전)</dt><dd>${fdt(s.modelA)} (${sgm(s.modelAd)})</dd><dt>AIS 비중</dt><dd>${Math.round((s.w||0)*100)}%</dd></dl>${s.reason?`<p class="cap" style="margin-top:4px">${esc(s.reason)}</p>`:''}`;
+}
+function detail(v){
+  // 발표용 순서: ① 예정·예측 표 ② 하역 물량 ③ 예상 손실(크게) ④ 권고 조치 + 예상 절감액(크게) ⑤ 그 아래 상세(작게)
+  const s=v.sel;if(!s)return `<div class="det">${empty()}</div>`;
+  const lo=-1.5,hi=1.5,pos=h=>Math.max(0,Math.min(100,(h-lo)/(hi-lo)*100));
+  let band='';if(s.p80){const a=relH(s,s.p80[0]),b=relH(s,s.p80[1]);band=`<div class="band" style="left:${pos(a)}%;width:${pos(b)-pos(a)}%"></div><span class="lt" style="left:${pos(a)}%">${s.p80[0]}</span><span class="lt" style="left:${pos(b)}%">${s.p80[1]}</span>`}
+  const tot=(s.unload+s.load+s.shift)||1,L=s.lossd||{};
+  const waitH=(L.vessel_wait&&s.cph)?L.vessel_wait/s.cph:(s.bdelay??s.d??0)+(s.queue||0);   // 배 대기 비용 ÷ 시간당 비용 = 배가 더 머무는 시간 (접안 지연 + 작업 지연 + 선석 대기)
+  const acts=s.acts||[],save=acts.filter(a=>!a.reference_only).reduce((p,a)=>p+(a.saving_krw||0),0);
+  const gang=acts.reduce((p,a)=>p+(a.saving_gang_h||0),0);
+  const lossBlock=s.loss==null?`<div class="big-loss"><div class="bl-l">예상 손실</div><div class="bl-v na">계산 안 됨</div></div>`:
+   `<div class="big-loss"><div class="bl-l">예상 손실 <span class="as">가정</span></div><div class="bl-v">${won(s.loss)}</div>
+    <div class="bl-g"><div><span>배 대기 비용</span><b>${won(L.vessel_wait)}</b></div><div><span>야간 할증</span><b>${L.night_surcharge?won(L.night_surcharge):'없음'}</b></div><div><span>더 머무는 시간</span><b>${waitH>0?waitH.toFixed(1)+'시간':'없음'}</b></div></div>
+    <div class="bl-n">${s.cls?esc(s.cls)+' · ':''}선사 시간당 ${won(s.cph)}${(L.labor_idle_gang_h||L.overtime_gang_h)?` · 작업조 대기 ${L.labor_idle_gang_h||0}개 조·초과근무 ${L.overtime_gang_h||0}개 조`:''}</div></div>`;
+  const actBlock=acts.length?`<div class="big-act"><div class="ba-h"><span>권고 조치</span><span>예상 절감 <b>${save?won(save):(gang?gang+'개 조':'—')}</b></span></div>${acts.map(a=>`<div class="ba-i ${a.reference_only?'ref':''}"><div class="ba-w">${esc(a.who)}${a.reference_only?' <span class="as">참고</span>':''}</div><div class="ba-t">${esc(a.what)}</div><div class="ba-s">${a.saving_krw?'절감 '+won(a.saving_krw):a.saving_gang_h?'절감 '+a.saving_gang_h+'개 조':''}</div></div>`).join('')}</div>`
+   :`<div class="big-act"><div class="ba-h"><span>권고 조치</span><span>예상 절감 <b>—</b></span></div><div class="ba-i"><div class="ba-w">${ADV[s.g][0]}</div><div class="ba-t">${ADV[s.g][1]}</div></div></div>`;
+  return `<div class="det">
+  <div><h3>${esc(s.name)}</h3><div class="s">${s.t} ${esc(s.berth)} · ${esc(s.line)} · ${nz(s.type)} · ${nz(s.flag)}${s.cls?' · '+esc(s.cls):''}</div></div>
+  <div class="kp4"><div><label>터미널 예정 접안</label><b>${fdt(s.planned)}</b></div><div><label>${s.w>0?'AIS 반영 예측 접안':'모델 예측 접안'}</label><b>${fdt(s.predicted)}</b></div><div class="g${s.g}"><label>예측 지연</label><b>${sgm(s.d)}</b></div><div class="g${s.g}"><label>등급</label><b>${GRN[s.g]}</b></div></div>
+  <div><div class="cap">하역 물량 ${num(tot)} box${s.trans?` · 환적 추정 ${num(s.trans)}`:''}</div><div class="cg"><i style="width:${s.unload/tot*100}%;background:var(--ac)"></i><i style="width:${s.load/tot*100}%;background:var(--mut)"></i><i style="width:${s.shift/tot*100}%;background:var(--g1)"></i></div><div class="cgl"><span><i style="background:var(--ac)"></i>양하 ${num(s.unload)}</span><span><i style="background:var(--mut)"></i>선적 ${num(s.load)}</span><span><i style="background:var(--g1)"></i>선내 이동 ${num(s.shift)}</span></div></div>
+  ${lossBlock}
+  ${actBlock}
+  <div class="small-det">
+  <div class="sd-h">상세 정보</div>
+  <div><div class="cap">예정 ±90분 안 예측 위치 · 띠 80% 범위</div><div class="rng"><div class="ax"></div>${band}<div class="pl" style="left:${pos(0)}%"></div><div class="pr" style="left:${pos(s.d)}%"></div><span class="lb" style="left:${pos(0)}%">예정 ${ftm(s.planned)}</span><span class="lb" style="left:0;transform:none">−90분</span><span class="lb" style="left:100%;transform:translateX(-100%)">+90분</span></div></div>
+  <dl class="facts"><dt>예측 작업시간</dt><dd>${s.work?s.work+'시간':NA}</dd><dt>예측 출항</dt><dd>${s.dep?fdt(s.dep):NA}</dd><dt>터미널 예정 출항</dt><dd>${s.depPlan?fdt(s.depPlan):NA}</dd><dt>반입 마감</dt><dd>${s.cutoff?fdt(s.cutoff):NA}</dd><dt>총톤수</dt><dd>${s.gt==null?NA:num(s.gt)+' t'}</dd><dt>앞 항구 → 다음 항구</dt><dd>${nz(s.up)} → ${nz(s.next)}</dd><dt>예선 / 도선</dt><dd>${s.tugs==null?NA:s.tugs+'척 / '+(s.pilot?'강제도선':'임의')}</dd><dt>항차</dt><dd>${esc(s.id)}</dd></dl>
+  <div class="cap">시점별 예측 (이 배)</div><div id="lh">${leadHist(s)}</div>
+  <div class="cap">실시간 위치 (AIS)</div>${aisBlock(s)}
+  </div>
+  </div>`;
+}
+function hourly(v,o={}){
+  // 일정표는 항상 신항 전체 선석을 그대로 그리고, 터미널을 고르면 나머지 터미널 줄·막대만 어둡게 (위치가 바뀌지 않게)
+  const ships=D.ships;if(!ships.length)return empty();
+  const off=t=>ST.term!=='ALL'&&t!==ST.term;
+  const hp=o.hp||28,lw=o.lw||96,rh=o.rh||26,histH=o.hist?38:0,head=36,span=HZ-startH;
+  const Wd=Math.round(lw+span*hp+12),X=h=>lw+(h-startH)*hp;
+  const rows=[...new Set(ships.map(s=>s.t+' '+s.berth))].sort();
+  // 같은 선석 줄에서 (예측 접안 ~ 예측 작업 종료)가 겹치는 배를 찾는다. 막대는 같은 줄에 실제로 겹쳐 그린다
+  const ovIds=new Set(),ovZones=[],byRow={},lane={},nL={},ovH={},ovE={};
+  ships.forEach(s=>{const k=s.t+' '+s.berth;(byRow[k]=byRow[k]||[]).push({s,a:s.h,b:s.h+Math.max(1,s.work||2)})});
+  Object.entries(byRow).forEach(([k,L])=>{L.sort((p,q)=>p.a-q.a);const ends=[];
+    L.forEach(it=>{lane[it.s.id]=0});nL[k]=1;
+    for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){if(L[j].a<L[i].b){ovIds.add(L[i].s.id);ovIds.add(L[j].s.id);ovH[L[j].s.id]=Math.max(ovH[L[j].s.id]||0,Math.min(L[i].b,L[j].b)-L[j].a);ovE[L[j].s.id]=Math.max(ovE[L[j].s.id]||0,Math.min(L[i].b,L[j].b));ovZones.push({k,a:L[j].a,b:Math.min(L[i].b,L[j].b),n1:L[i].s.name,n2:L[j].s.name,t:L[i].s.t})}}});
+  const top=head+histH,rowY={};let acc=top;rows.forEach(r=>{rowY[r]=acc;acc+=rh*(nL[r]||1)});const H=acc+18;
+  let g=`<svg width="${Wd}" height="${H}" viewBox="0 0 ${Wd} ${H}"><defs><pattern id="ovhatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="rgba(0,0,0,.35)"/><line x1="0" y1="0" x2="0" y2="8" stroke="rgba(0,0,0,.7)" stroke-width="3"/></pattern></defs>`;
+  for(let k=0;k<4;k++){const a=(D0.getTime()+k*864e5-T0)/36e5,b=a+24;const x1=X(Math.max(a,startH)),x2=X(Math.min(b,HZ));if(x2<=x1)continue;if(k%2)g+=`<rect class="band" x="${x1}" y="0" width="${x2-x1}" height="${H}"/>`;
+    if(a>startH)g+=`<line class="dayl" x1="${X(a)}" x2="${X(a)}" y1="0" y2="${H}"/>`;
+    const dd=new Date(D0.getTime()+k*864e5);g+=`<text class="hd" x="${x1+6}" y="13">${['오늘','내일','모레','글피'][k]} ${dd.getMonth()+1}/${dd.getDate()}</text>`}
+  g+=`<rect class="cur" x="${X(startH)}" y="${head-14}" width="${hp}" height="${H-head+14}"/>`;
+  for(let i=0;i<=span;i++){const h=startH+i,x=X(h),clock=(T0.getHours()+i)%24,six=clock%6===0;
+    g+=`<line class="${six?'gl6':'gl'}" x1="${x}" x2="${x}" y1="${head-12}" y2="${H}"/>`;
+    if(i<span)g+=`<text x="${x+hp/2}" y="${head-2}" text-anchor="middle" ${six?'class="hd"':''}>${clock}</text>`}
+  if(o.hist){const cnt=new Array(Math.ceil(span)).fill(0);ships.filter(s=>!off(s.t)).forEach(s=>{const i=Math.floor(s.h-startH);if(i>=0&&i<cnt.length)cnt[i]++});const mx=Math.max(1,...cnt);
+    cnt.forEach((c,i)=>{if(!c)return;const bh=(c/mx)*(histH-14);g+=`<rect class="hist" x="${X(startH+i)+2}" y="${head+histH-4-bh}" width="${hp-4}" height="${bh}"/><text class="histn" x="${X(startH+i)+hp/2}" y="${head+histH-6-bh}" text-anchor="middle">${c}</text>`});
+    g+=`<text x="4" y="${head+histH-6}">시간당 접안</text>`}
+  rows.forEach((r,i)=>{const y=rowY[r],rhh=rh*(nL[r]||1),t=r.split(' ')[0];if(v.sel&&v.sel.t+' '+v.sel.berth===r)g+=`<rect class="rowsel" x="0" y="${y}" width="${Wd}" height="${rhh}"/>`;if(ovZones.some(z=>z.k===r&&z.b>startH))g+=`<rect class="rowov ${off(t)?'dimz':''}" x="0" y="${y}" width="${Wd}" height="${rhh}"/><rect class="rowovl ${off(t)?'dimz':''}" x="0" y="${y}" width="4" height="${rhh}"/>`;if(off(t))g+=`<rect class="rowoff" x="0" y="${y}" width="${Wd}" height="${rhh}"/>`;g+=`<text class="rl ${off(t)?'dim':''}" x="6" y="${y+rhh/2+4}" data-act="term" data-t="${esc(t)}"><title>${esc(t)}만 보기</title>${esc(r)}</text><line class="gl" x1="0" x2="${Wd}" y1="${y+rhh}" y2="${y+rhh}"/>`});
+  let labels='';
+  ships.forEach(s=>{const y=rowY[s.t+' '+s.berth]+(lane[s.id]||0)*rh+4,bh=rh-8,len=Math.max(1,s.work||2),x=X(s.h),w=Math.min(len*hp,Wd-x-2),xp=X(s.hp);
+    g+=`<g data-act="sel" data-id="${esc(s.id)}" data-t="${esc(s.t)}" class="${v.sel===s?'sel':''} ${off(s.t)?'dim':''}"><title>${esc(s.name)} · 예정 ${fdt(s.planned)} → 예측 ${fdt(s.predicted)} (${sgm(s.d)}) · 작업 ${s.work??'?'}시간</title>`;
+    g+=`<rect class="ghost" x="${xp}" y="${y-1}" width="${Math.max(4,Math.min(len*hp,Wd-xp-2))}" height="${bh+2}" rx="2"/>`;
+    if(Math.abs(s.d)>0.05)g+=`<line class="con" x1="${xp}" x2="${x}" y1="${y+bh/2}" y2="${y+bh/2}"/>`;
+    g+=`<rect class="bar g${s.g} ${ovIds.has(s.id)?'ov':''}" x="${x}" y="${y}" width="${Math.max(w,4)}" height="${bh}" rx="2"/>`;
+    const lx=ovE[s.id]?Math.min(X(ovE[s.id]),x+w):x,lw2=x+w-lx,lab=`${s.name} ${sgm(s.d)}`,fits=lw2>lab.length*6.6+8,fitsN=lw2>s.name.length*6.6+8;
+    labels+=`<text class="bl ${off(s.t)?'dimt':''}" x="${lx+5}" y="${y+bh/2+4}">${esc(fits?lab:fitsN?s.name:'')}</text>`;
+    if(!fitsN)labels+=`<text class="${off(s.t)?'dimt':''}" x="${x+Math.max(w,4)+4}" y="${y+bh/2+4}" style="fill:var(--fg)">${esc(lab)}</text>`;
+    g+=`</g>`});
+  // 겹친 구간: 막대 위에 옅은 빗금 + 앰버 점선 테두리, 그 위에 배 이름, 맨 위에 겹친 시간
+  ovZones.forEach(z=>{const x1=X(Math.max(z.a,startH)),x2=Math.min(X(z.b),Wd-2);if(x2>x1)g+=`<rect class="ovz ${off(z.t)?'dimz':''}" x="${x1}" y="${rowY[z.k]+3}" width="${x2-x1}" height="${rh-6}"/>`});
+  g+=labels;
+  ovZones.forEach(z=>{const x1=X(Math.max(z.a,startH)),x2=Math.min(X(z.b),Wd-2);if(x2<=x1)return;const hh=z.b-z.a;
+    g+=`<g class="ovg ${off(z.t)?'dim':''}"><title>같은 선석 겹침 ${hh.toFixed(1)}시간: ${esc(z.n1)} ↔ ${esc(z.n2)}</title><rect class="ovframe" x="${x1}" y="${rowY[z.k]+3}" width="${x2-x1}" height="${rh-6}"/><text class="ovt" x="${(x1+x2)/2}" y="${rowY[z.k]+rh/2+4}" text-anchor="middle">${hh.toFixed(1)}h</text></g>`});
+  g+=`<line class="now" x1="${X(0)}" x2="${X(0)}" y1="${head-14}" y2="${H}"/><text class="nowt" x="${X(0)+4}" y="${H-4}">지금 ${D.as_of.slice(11,16)}</text></svg>`;
+  const ovs=ovZones.filter(z=>z.b>startH).sort((p,q)=>p.a-q.a),hm=h=>{const d=new Date(T0.getTime()+h*36e5);return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`};
+  const ovl=ovs.length?`<div class="ovl"><span class="hd0">같은 선석 겹침 ${ovs.length}건</span>${ovs.map(z=>{const c=off(z.t)?' dim':'';return `<span class="k${c}">■ ${esc(z.k)}</span><span class="n${c}">${esc(z.n1)} ↔ ${esc(z.n2)}</span><span class="w${c}">${hm(z.a)} ~ ${hm(z.b)}</span><span></span><span class="h${c}">겹침 ${(z.b-z.a).toFixed(1)}시간</span>`}).join('')}</div>`:'';
+  return `${ovl}<div class="hz">${g}</div><div class="lg"><span><i style="background:var(--g0)"></i>막대 = 예측 접안 ~ 예측 작업 종료</span><span><i style="border:1px dashed var(--mut)"></i>점선 = 터미널 예정</span><span><i style="background:var(--ac)"></i>세로선 = 지금</span>${o.hist?'<span><i style="background:var(--ac);opacity:.55"></i>위 막대 = 시간당 접안 척수</span>':''}<span><i style="background:repeating-linear-gradient(45deg,#4ee06a 0 3px,#000 3px 6px);outline:2px solid var(--ac)"></i>빗금 칸 = 같은 선석에서 겹치는 시간</span><span>1칸 = 1시간 · 굵은 선 6시간</span></div>`;
+}
+function spark(w,h){
+  const d=D.days.filter(x=>x.win&&x.win.mae!=null);if(d.length<2)return '<p class="na">기록 부족</p>';
+  const mx=Math.max(...d.map(x=>Math.max(x.win.mae,x.win.term_mae)))*1.1,lb=28;
+  const X=i=>lb+i*(w-lb-4)/(d.length-1),Y=v=>h-14-(v/mx)*(h-22);
+  const line=k=>d.map((x,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(x.win[k]).toFixed(1)}`).join('');
+  let s=`<svg class="sp" viewBox="0 0 ${w} ${h}" width="100%" preserveAspectRatio="none" style="display:block">`;
+  [0,15,30].forEach(m=>{if(m/60>mx)return;const y=Y(m/60);s+=`<line class="ax" x1="${lb}" x2="${w}" y1="${y}" y2="${y}"/><text x="0" y="${y+3}">${m}분</text>`});
+  s+=`<text x="${lb}" y="${h-1}">${d[0].iso.slice(5)}</text><text x="${w}" y="${h-1}" text-anchor="end">${d[d.length-1].iso.slice(5)}</text>`;
+  return s+`<path class="t" d="${line('term_mae')}"/><path class="m" d="${line('mae')}"/></svg>`;
+}
+function accBlock(v){
+  const w=v.win||{};
+  return `<div class="body"><div class="two"><div><span>모델</span><b style="color:var(--ac)">${w.mae==null?'—':mn(w.mae)+'분'}</b></div><div><span>터미널 예정</span><b>${w.term_mae==null?'—':mn(w.term_mae)+'분'}</b></div><div><span>판정</span><b class="${w.drift?'g2':'g0'}">${w.n==null?'—':w.drift?'드리프트':w.full?'정상':'수집 중'}</b></div></div>
+  <div class="acc">${['HJNC','PNIT','BNCT'].map(k=>{const t=(D.terminals[k]||{}).all||{};return `<span>${k}</span><div class="bar2"><i style="width:${pct(t.term_in30)}%"></i><b style="width:${pct(t.in30)}%"></b></div><span>${pct(t.term_in30)}→<b>${pct(t.in30)}%</b></span>`}).join('')}</div>
+  <p class="cap" style="margin-top:8px">30분 안 적중률 (회색 터미널 예정 · 앰버 모델) · 위 숫자는 최근 ${D.wdays}일 평균 오차${w.n!=null?` (${w.n}척)`:''}</p>${leadTbl()}</div>`;
+}
+function leadTbl(){
+  const L=D.lead&&D.lead[ST.term];if(!L||!L.leads||!L.leads.length)return '';
+  const order=['48h','24h','10h','6h','final'],rows=order.map(k=>L.leads.find(x=>x.lead===k)).filter(Boolean);
+  const nm={'48h':'48시간 전','24h':'24시간 전','10h':'반입 마감 (10시간 전)','6h':'6시간 전','final':'최종 (1시간 전)'};
+  return `<div class="cap" style="margin-top:12px">예측 시점별 정확도 · ${TNAME[ST.term]} · ${L.period_from}~ 운영 구간</div><table class="rc lead"><thead><tr><th>시점</th><th class="n">척수</th><th class="n">모델 오차</th><th class="n">모델 30분 안</th><th class="n">터미널 예정 오차</th><th class="n">예정 30분 안</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${nm[r.lead]}${r.plan_known?'':' *'}</td><td class="n">${r.n||'-'}</td><td class="n" style="color:var(--ac)">${r.mae_h==null?'-':mn(r.mae_h)+'분'}</td><td class="n">${pct(r.in30)}%</td><td class="n">${r.terminal_mae_h==null?'기록 없음':mn(r.terminal_mae_h)+'분'}</td><td class="n">${r.terminal_in30==null?'—':pct(r.terminal_in30)+'%'}</td></tr>`).join('')}</tbody></table><p class="cap" style="margin-top:4px">* 그 시점 터미널 예정은 기록이 없어 반입 마감 시점 예정을 기준으로 계산 (실제보다 좋게 나올 수 있음). 시점별 엑셀이 쌓이면 바로잡음</p>`;
+}
+function recentTbl(v){
+  if(!v.recent.length)return `<p class="na" style="padding:10px 12px">최근 24시간 접안 없음</p>`;
+  return `<div class="tblw" style="--tblh:220px"><table class="rc"><thead><tr><th>배</th><th>터미널</th><th class="n">예측</th><th class="n">실제</th><th class="n">모델 오차</th><th class="n">예정 오차</th></tr></thead><tbody>${v.recent.map(s=>`<tr><td><span class="nm">${esc(s.name)}</span>${s.working?' <span class="as">작업 중</span>':''}</td><td>${s.terminal} ${esc(s.berth)}</td><td class="n">${sg(s.delay)}</td><td class="n">${sg(s.actual)}</td><td class="n">${Math.abs(mn(s.actual)-mn(s.delay))}분</td><td class="n">${Math.abs(mn(s.actual))}분</td></tr>`).join('')}</tbody></table></div>`;
+}
+function impBlock(){
+  const im=D.impact;
+  if(!im)return pnl('예상 손실·절감 <span class="as">가정</span>','/v25/impact 응답 없음',`<div class="body"><div class="imp2"><div><label>선사 손실</label><b>— 원</b></div><div><label>배 대기 비용</label><b>— 원</b></div><div><label>절감 가능액</label><b>— 원</b></div><div><label>노는 작업조</label><b>—</b></div></div></div>`);
+  const t=im.totals||{},acts=(im.actions||[]).filter(a=>ST.term==='ALL'||a.terminal===ST.term).slice(0,5),stf=(im.staffing||[]).filter(a=>ST.term==='ALL'||a.terminal===ST.term).slice(0,9);
+  return pnl(`예상 손실·절감 <span class="as">가정</span>`,`다음 ${HZ}시간 · 신항 전체`,`<div class="body"><div class="imp2">
+  <div><label>선사 손실</label><b>${won(t.carrier_loss_krw)}</b></div><div><label>배 대기 비용</label><b>${won(t.vessel_wait_krw)}</b><span class="cap">야간 할증 ${won(t.night_surcharge_krw)}</span></div><div><label>절감 가능액</label><b style="color:var(--ac)">${won(t.possible_saving_krw)}</b></div><div><label>노는 작업조</label><b>${t.labor_idle_gang_h??'—'}<small>개 조</small></b><span class="cap">절감 가능 ${t.possible_saving_gang_h??'—'}개 조</span></div></div>
+  <div class="imgrid"><div><div class="cap">조치 (절감액 순)</div>${acts.length?acts.map(a=>`<div class="adv"><b>${esc(a.vessel||'')} · ${esc(a.who)}${a.reference_only?' <span class="as">참고</span>':''}</b>${esc(a.what)}${a.saving_krw?` <span style="color:var(--ac)">${won(a.saving_krw)}</span>`:''}</div>`).join(''):'<p class="na">조치 없음</p>'}</div>
+  <div><div class="cap">시간대별 작업조 (계획 → 예측 필요)</div>${stf.length?`<table class="rc"><tbody>${stf.map(r=>`<tr><td>${r.terminal}</td><td>${esc(r.from)}~${esc(r.to.slice(-5))}</td><td class="n">${r.planned_gangs}→<b>${r.predicted_gangs}</b></td><td class="n ${r.delta<0?'g1':'g2'}">${r.delta>0?'+':''}${r.delta}</td></tr>`).join('')}</tbody></table><p class="cap">${esc(stf[0].advice||'')}</p>`:'<p class="na">변동 없음</p>'}</div></div></div>`,'imp');
+}
+function render(){
+  const v=view();
+  $('app').innerHTML=`${topbar(v)}<div class="wrap"><div class="main">
+    <div class="col">${pnl('시간대별 접안 일정','선석별 · 1칸 1시간 · 막대를 누르면 상세',hourly(v,{hist:true}))}${pnl(`접안 예정 ${HZ}시간`,sortBtns(),tbl(v),'grow')}</div>
+    ${pnl('선박 상세',v.sel?esc(v.sel.id):'',detail(v),'side')}</div>
+    <div class="b3">${pnl('정확도',`최근 ${D.wdays}일`,accBlock(v))}${pnl('30일 평균 오차 추이','앰버 모델 · 점선 예정',`<div class="body">${spark(420,150)}</div>`)}${pnl('최근 24시간 접안 · 예측 vs 실제','분',recentTbl(v))}</div>
+    ${impBlock()}</div>`;
+}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-act]');if(!a)return;
+  if(a.dataset.act==='term'){ST.term=(a.tagName==='text'&&ST.term===a.dataset.t)?'ALL':a.dataset.t;ST.sel=null}   // 일정표 줄 이름을 다시 누르면 전체로
+  else if(a.dataset.act==='sort'){ST.sort=a.dataset.k;ST.sel=null}
+  else if(a.dataset.act==='sel'){if(a.dataset.t&&ST.term!=='ALL'&&a.dataset.t!==ST.term)ST.term=a.dataset.t;ST.sel=a.dataset.id}   // 어두운 막대를 누르면 그 터미널로 전환
+  render()});
+document.addEventListener('keydown',e=>{const i=['F1','F2','F3','F4'].indexOf(e.key);if(i>=0){e.preventDefault();ST.term=TERMS[i];ST.sel=null;render()}});
+async function boot(){try{await load();render()}catch(e){$('app').innerHTML=`<div class="cmd"><span class="k">BERTH</span><span class="t">부산항 지연 조기경보 · 신항</span></div><p style="padding:20px">서버에 연결하지 못했습니다 (${esc(e.message)}). 모델 서버의 /early-warning 주소로 열어 주세요.</p>`}}
+boot();setInterval(()=>{load().then(render).catch(()=>{})},120000);
+
+</script>
+</body>
+</html>
